@@ -115,14 +115,12 @@ public class RockPaperScissors {
         System.out.println("Play again? Y/N");
         playAgain = inputReader.next();
         
-        switch(playAgain) {
-            case "Y":
-                continue;
-            case "N":
+            if(playAgain.equals("Y") || playAgain.equals("y")) {
+            continue;
+            } else if (playAgain.equals("N") || playAgain.equals("n")) {
                 System.out.println("Thanks for playing!");
-                System.exit(0);
                 break;
-        }
+            }
         } while(true);
         
         
