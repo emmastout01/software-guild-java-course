@@ -38,7 +38,7 @@ public class DogGenetics {
         percentUsedUp += percentGreatDane;
         percentBorderCollie = rand.nextInt(100 - percentUsedUp) + 1;
         percentUsedUp += percentBorderCollie;
-        percentScottie = rand.nextInt(100 - percentUsedUp) + 1;
+        percentScottie = 100-percentUsedUp;
         percentUsedUp += percentScottie;
         
         //Print dog's 'pedigree' to console
