@@ -23,8 +23,9 @@ public class Game {
             this.drawBoard();
             this.playerMove();
             this.computerMove();
-
         }
+        this.drawBoard();
+        System.out.println("Thanks for playing!");
     }
 
     public void playerMove() {
