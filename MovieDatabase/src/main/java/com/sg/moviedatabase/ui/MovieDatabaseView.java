@@ -26,11 +26,12 @@ public class MovieDatabaseView {
         io.print("1. List all movies");
         io.print("2. Add a movie");
         io.print("3. View movie information by title");
-        io.print("4. Edit movie information");
-        io.print("5. Remove movie from database by title");
-        io.print("6. Exit");
+        io.print("4. Search for a movie by title");
+        io.print("5. Edit movie information");
+        io.print("6. Remove movie from database by title");
+        io.print("7. Exit");
 
-        return io.readInt("Please select from the above choices.", 1, 6);
+        return io.readInt("Please select from the above choices.", 1, 7);
     }
 
     public void displayListMoviesBanner() {
@@ -85,6 +86,11 @@ public class MovieDatabaseView {
                 + "like more information about: ");
         return movieTitle;
     }
+    
+     public String getSearch() {
+        String movieTitle = io.readString("Search for movies that start with: ");
+        return movieTitle;
+    }
 
     public void displayMovie(Movie movie) {
         if (movie != null) {
@@ -130,32 +136,32 @@ public class MovieDatabaseView {
         
         Movie newMovie;
         
-        if(title != null) {
+        if(!title.isEmpty()) {
             newMovie = new Movie(title);
         } else {
             newMovie = new Movie(currentTitle);
         }
-        if(releaseDate != null) {
+        if(!releaseDate.isEmpty()) {
            newMovie.setReleaseDate(releaseDate); 
         } else {
             newMovie.setReleaseDate(currentRelease);
         } 
-        if (rating != null) {
+        if (!rating.isEmpty()) {
           newMovie.setMpaaRating(rating);  
         } else {
            newMovie.setMpaaRating(currentRating);  
         }
-        if (director != null) {
+        if (!director.isEmpty()) {
             newMovie.setDirectorName(director);
         } else {
             newMovie.setDirectorName(currentDirector);
         }
-        if (studio != null) {
+        if (!studio.isEmpty()) {
             newMovie.setStudio(studio);
         } else {
             newMovie.setStudio(currentStudio);
         }
-        if (userRating != null) {
+        if (!userRating.isEmpty()) {
             newMovie.setUserRating(userRating);
         } else {
             newMovie.setUserRating(currentUserRating);
@@ -177,12 +183,33 @@ public class MovieDatabaseView {
     public void displayRemoveSuccessBanner() {
        io.print("Movie successfully removed from database.");
     }
+    
+    public void displayRemoveFail(String movieTitle) {
+        io.print("Error: " + movieTitle + " could not be removed.");
+    }
+   
     public void displayExitBanner() {
         io.print("Thank you! Goodbye.");
     }
 
     public void displayErrorMessage(String message) {
         io.print(message);
+    }
+
+    public void displayEditSuccess(String movieTitle) {
+        io.print(movieTitle + "was successfully edited!");
+    }
+
+    public void displayEditFail(String movieTitle) {
+        io.print("Error: " + movieTitle + " could not be edited.");
+    }
+
+    public void displaySearchBanner() {
+        io.print("=== Search Movies ===");
+    }
+
+    public void displayNoMovieBanner() {
+        io.print("No such movie exists in the database.");
     }
 
    

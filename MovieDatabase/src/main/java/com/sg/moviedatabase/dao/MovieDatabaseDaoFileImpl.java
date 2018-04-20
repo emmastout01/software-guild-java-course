@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
@@ -69,6 +70,20 @@ public class MovieDatabaseDaoFileImpl implements MovieDatabaseDao {
        movies.remove(movieTitle);
        writeMovies(movies.values());
        return movieToRemove;
+    }
+    
+     @Override
+    public List<Movie> searchMovies(String input)
+            throws MovieDatabaseDaoException {
+        loadMovies();
+        List<Movie> movieList = new ArrayList<>();
+        Set<String> movieSet = movies.keySet();
+        for(String movieTitle : movieSet) {
+            if(movieTitle.startsWith(input)) {
+                movieList.add(movies.get(movieTitle));
+            }
+        }
+        return movieList;
     }
 
     private void loadMovies() throws MovieDatabaseDaoException {
@@ -125,4 +140,4 @@ public class MovieDatabaseDaoFileImpl implements MovieDatabaseDao {
         }
         out.close();
     }
-}
+} 

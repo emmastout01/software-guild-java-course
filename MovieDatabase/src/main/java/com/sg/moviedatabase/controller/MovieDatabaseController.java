@@ -44,12 +44,15 @@ public class MovieDatabaseController {
                         viewMovie();
                         break;
                     case 4:
-                        editMovie();
+                        searchMovies();
                         break;
                     case 5:
+                        editMovie();
+                        break;
+                    case 6: 
                         removeMovie();
                         break;
-                    case 6:
+                    case 7:
                         isRunning = false;
                         break;
                 }
@@ -104,10 +107,22 @@ public class MovieDatabaseController {
         String movieTitleToEdit = view.getMovieToEdit();
         //Get movie data for that movie via the dao:
         Movie movieToEdit = dao.viewMovie(movieTitleToEdit);
-        //Get edited data from user
+        //If no such movie exists, let the user know
+        if(movieToEdit == null) {
+            view.displayNoMovieBanner();
+        } else {
+             //Get edited data from user
         Movie newMovie = view.getEditMovieInfo(movieToEdit);
         //Write this data to our file using the dao
         dao.editMovie(movieTitleToEdit, newMovie);
+        //Let the user know if it worked or not.
+        if(dao.editMovie(movieTitleToEdit, newMovie) == newMovie) {
+            view.displayEditSuccess(movieTitleToEdit);
+        } else {
+            view.displayEditFail(movieTitleToEdit);
+        }
+        }
+       
     }
 
     private void removeMovie()
@@ -116,7 +131,22 @@ public class MovieDatabaseController {
         //Get info from user about which movie they want to remove
         String movieTitle = view.getMovieTitleToRemove();
         //Using this info, remove the the movie with this title from file
-        dao.removeMovie(movieTitle);
-        view.displayRemoveSuccessBanner();
+        Movie movieToRemove = dao.removeMovie(movieTitle);
+        if(movieToRemove == null) {
+            view.displayNoMovieBanner();
+        } else {
+            view.displayRemoveSuccessBanner();
+        }
+    }
+    
+    private void searchMovies() 
+             throws MovieDatabaseDaoException {
+        view.displaySearchBanner();
+        //Get input from user for what the movie starts with
+        String startsWith = view.getSearch();
+        //Get movie data for every movie that starts with user input
+        List<Movie> movieList = dao.searchMovies(startsWith);
+        //Display movies that meet this criteria
+        view.displayMovieList(movieList);
     }
 }

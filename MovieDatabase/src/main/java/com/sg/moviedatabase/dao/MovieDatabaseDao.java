@@ -32,4 +32,7 @@ public interface MovieDatabaseDao {
     //Revome movie
     Movie removeMovie(String movieTitle)
             throws MovieDatabaseDaoException;
+    
+    List<Movie> searchMovies(String input)
+            throws MovieDatabaseDaoException;
 }

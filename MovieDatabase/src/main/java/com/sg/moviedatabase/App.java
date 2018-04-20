@@ -27,5 +27,6 @@ public class App {
         MovieDatabaseController controller = new MovieDatabaseController(
                 myView, myDao);
         controller.run();
+                
     }
 }
