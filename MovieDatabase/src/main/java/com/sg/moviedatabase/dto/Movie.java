@@ -5,6 +5,8 @@
  */
 package com.sg.moviedatabase.dto;
 
+import java.util.Objects;
+
 /**
  *
  * @author emmastout
@@ -17,6 +19,51 @@ public class Movie {
     private String studio;
     private String userRating;
     private String releaseDate;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.title);
+        hash = 37 * hash + Objects.hashCode(this.mpaaRating);
+        hash = 37 * hash + Objects.hashCode(this.directorName);
+        hash = 37 * hash + Objects.hashCode(this.studio);
+        hash = 37 * hash + Objects.hashCode(this.userRating);
+        hash = 37 * hash + Objects.hashCode(this.releaseDate);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Movie other = (Movie) obj;
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.mpaaRating, other.mpaaRating)) {
+            return false;
+        }
+        if (!Objects.equals(this.directorName, other.directorName)) {
+            return false;
+        }
+        if (!Objects.equals(this.studio, other.studio)) {
+            return false;
+        }
+        if (!Objects.equals(this.userRating, other.userRating)) {
+            return false;
+        }
+        if (!Objects.equals(this.releaseDate, other.releaseDate)) {
+            return false;
+        }
+        return true;
+    }
 
     public String getReleaseDate() {
         return releaseDate;

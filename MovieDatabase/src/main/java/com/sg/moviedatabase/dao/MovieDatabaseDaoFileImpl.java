@@ -40,6 +40,7 @@ public class MovieDatabaseDaoFileImpl implements MovieDatabaseDao {
     @Override
     public Movie addMovie(String movieTitle, Movie movie)
             throws MovieDatabaseDaoException {
+        loadMovies();
         movies.put(movieTitle, movie);
         writeMovies(movies.values());
         return movie;
