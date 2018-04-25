@@ -5,6 +5,7 @@
  */
 package com.sg.moviedatabase.dto;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -18,7 +19,7 @@ public class Movie {
     private String directorName;
     private String studio;
     private String userRating;
-    private String releaseDate;
+    private LocalDate releaseDate;
 
     @Override
     public int hashCode() {
@@ -65,11 +66,11 @@ public class Movie {
         return true;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

@@ -6,6 +6,8 @@
 package com.sg.moviedatabase.ui;
 
 import com.sg.moviedatabase.dto.Movie;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -57,20 +59,27 @@ public class MovieDatabaseView {
 
     public Movie getNewMovieInfo() {
         String title = io.readString("Movie title:");
-        String releaseDate = io.readString("Release Date:");
+        String releaseDate = io.readString("Release Date (mm/dd/yyyy):");
         String rating = io.readString("MPAA Rating:");
         String director = io.readString("Director:");
         String studio = io.readString("Studio:");
         String userRating = io.readString("Your movie rating/comments:");
+        
+        LocalDate convertedReleaseDate = convertReleaseDate(releaseDate);
 
         Movie newMovie = new Movie(title);
-        newMovie.setReleaseDate(releaseDate);
+        newMovie.setReleaseDate(convertedReleaseDate);
         newMovie.setMpaaRating(rating);
         newMovie.setDirectorName(director);
         newMovie.setStudio(studio);
         newMovie.setUserRating(userRating);
 
         return newMovie;
+    }
+    
+    public LocalDate convertReleaseDate(String stringReleaseDate) {
+        return LocalDate.parse(stringReleaseDate, 
+                DateTimeFormatter.ofPattern("MM/dd/yyyy"));
     }
 
     public void displayAddMovieSuccessBanner() {
@@ -93,9 +102,10 @@ public class MovieDatabaseView {
     }
 
     public void displayMovie(Movie movie) {
+        
         if (movie != null) {
             io.print(movie.getTitle());
-            io.print(movie.getReleaseDate());
+            io.print(movie.getReleaseDate().toString());
             io.print(movie.getMpaaRating());
             io.print(movie.getDirectorName());
             io.print(movie.getStudio());
@@ -118,7 +128,7 @@ public class MovieDatabaseView {
     
     public Movie getEditMovieInfo(Movie currentMovie) {
         String currentTitle = currentMovie.getTitle();
-        String currentRelease = currentMovie.getReleaseDate();
+        LocalDate currentRelease = currentMovie.getReleaseDate();
         String currentRating = currentMovie.getMpaaRating();
         String currentDirector = currentMovie.getDirectorName();
         String currentStudio = currentMovie.getStudio();
@@ -126,7 +136,8 @@ public class MovieDatabaseView {
                 
         
         String title = io.readStringPrintf("Movie title (%s):", currentTitle);
-        String releaseDate = io.readStringPrintf("Release Date (%s):", currentRelease);
+        String releaseDate = io.readStringPrintf("Release Date (mm/dd/yyyy) (%s):", 
+                currentRelease.toString());
         String rating = io.readStringPrintf("MPAA Rating (%s):", currentRating);
         String director = io.readStringPrintf("Director (%s):", currentDirector);
         String studio = io.readStringPrintf("Studio (%s):", currentStudio);
@@ -142,7 +153,8 @@ public class MovieDatabaseView {
             newMovie = new Movie(currentTitle);
         }
         if(!releaseDate.isEmpty()) {
-           newMovie.setReleaseDate(releaseDate); 
+           LocalDate convertedReleaseDate = convertReleaseDate(releaseDate);
+           newMovie.setReleaseDate(convertedReleaseDate); 
         } else {
             newMovie.setReleaseDate(currentRelease);
         } 
