@@ -168,10 +168,11 @@ public class Main {
                         Collectors.maxBy((a, b) -> a.getGpa().compareTo(b.getGpa()))));
         
         for (String country : maxGpaByCountry.keySet()) {
-            Optional <Student> maxStudent = maxGpaByCountry.get(country);
+            Optional<Student> maxStudent = maxGpaByCountry.get(country);
             
-            maxGpa = maxStudent.getGpa();
         }
+        
+        
         
         System.out.println("");
         
@@ -199,5 +200,6 @@ public class Main {
     static void println(Student s) {
         System.out.println(s);
     }
+    
 
 }
