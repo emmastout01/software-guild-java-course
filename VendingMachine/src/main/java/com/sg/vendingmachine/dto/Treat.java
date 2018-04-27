@@ -12,9 +12,14 @@ import java.math.BigDecimal;
  * @author emmastout
  */
 public class Treat {
+    private int treatId;
     private String name;
     private BigDecimal cost;
     private int inventory;
+
+    public int getTreatId() {
+        return treatId;
+    }
 
     public String getName() {
         return name;
@@ -22,6 +27,10 @@ public class Treat {
 
     public BigDecimal getCost() {
         return cost;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getInventory() {
@@ -36,8 +45,8 @@ public class Treat {
         this.inventory = inventory;
     }
     
-    public Treat(String treatName) {
-        this.name = treatName;
+    public Treat(int treatId) {
+        this.treatId = treatId;
     }
     
 }

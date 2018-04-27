@@ -5,10 +5,24 @@
  */
 package com.sg.vendingmachine.service;
 
+import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
+import com.sg.vendingmachine.dto.Treat;
+import java.math.BigDecimal;
+import java.util.List;
 /**
  *
  * @author emmastout
  */
 public interface VendingMachineService {
+
+    public Change purchaseTreat(BigDecimal addedMoney, int myTreat)
+            throws VendingMachinePersistenceException,
+            InsufficientFundsException,
+            OutOfStockException;
+    
+    public List<Treat> getTreats() throws VendingMachinePersistenceException;
     
 }
+
+
+

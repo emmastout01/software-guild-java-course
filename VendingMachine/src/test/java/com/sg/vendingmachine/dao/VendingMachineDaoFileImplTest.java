@@ -5,6 +5,9 @@
  */
 package com.sg.vendingmachine.dao;
 
+import com.sg.vendingmachine.dto.Treat;
+import java.math.BigDecimal;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,26 +20,27 @@ import static org.junit.Assert.*;
  * @author emmastout
  */
 public class VendingMachineDaoFileImplTest {
-    
+
+    private VendingMachineDao dao = new VendingMachineDaoFileImpl();
+
     public VendingMachineDaoFileImplTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
-        //Clear the file
-        //Add two treats to the file
-        
-        
+
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
-    public void setUp() {
+    public void setUp()
+            throws Exception {
+
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -45,9 +49,10 @@ public class VendingMachineDaoFileImplTest {
      * Test of getTreats method, of class VendingMachineDaoFileImpl.
      */
     @Test
-    public void testGetTreats() throws Exception {   
-        //Run getTreats
-        
+    public void testGetTreats() throws Exception {
+    
+
+//Run getTreats
         //Assert that both treats are in the getTreats file
     }
 
@@ -57,14 +62,10 @@ public class VendingMachineDaoFileImplTest {
     @Test
     public void testGetMyTreat() throws Exception {
         //Run getMyTreat on the first treat
-        
+
         //assert that we get back the first treat
-        
         //Run getMyTreat on the second treat
-        
         //assert that we get back the second treat
-        
-        
     }
 
     /**
@@ -73,12 +74,10 @@ public class VendingMachineDaoFileImplTest {
     @Test
     public void testUpdateTreat() throws Exception {
         //Run updateTreat on the first treat
-        
+
         //assert that we get back the first treat with new inventory amount
-        
         //Run update on the second treat
-        
         //assert that we get back the second treat with new inventory amount        
     }
-    
+
 }

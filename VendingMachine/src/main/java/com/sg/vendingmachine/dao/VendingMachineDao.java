@@ -19,10 +19,10 @@ public interface VendingMachineDao {
             throws VendingMachinePersistenceException;
     
     //Get one treat type
-    public Treat getMyTreat(String treatName)
+    public Treat getMyTreat(int treatId)
             throws VendingMachinePersistenceException;
     
     //Decrease treat inventory by one
-    public Treat updateTreat(String treatName) 
+    public Treat updateTreat(int treatId) 
             throws VendingMachinePersistenceException;
 }

@@ -27,7 +27,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     public static final String INVENTORY_FILE = "inventory.txt";
     public static final String DELIMITER = "::";
-    private Map<String, Treat> treats = new HashMap<>();
+    private Map<Integer, Treat> treats = new HashMap<>();
 
     @Override
     public List<Treat> getTreats() throws VendingMachinePersistenceException {
@@ -36,16 +36,22 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     }
 
     @Override
-    public Treat getMyTreat(String treatName) throws VendingMachinePersistenceException {
+    public Treat getMyTreat(int treatId) throws VendingMachinePersistenceException {
         readInventory();
-        Treat myTreat = treats.get(treatName);
+        Treat myTreat = treats.get(treatId);
         return myTreat;
     
     }
 
     @Override
-    public Treat updateTreat(String treatName) throws VendingMachinePersistenceException {
+    public Treat updateTreat(int treatId) throws VendingMachinePersistenceException {
         //Here we want to decrease the inventory by 1. We don't want to remove the whole treat so I need to think about how to do that.
+        readInventory();
+        Treat myTreat = treats.get(treatId);
+        int currentInventory = myTreat.getInventory();
+        myTreat.setInventory(currentInventory - 1);
+        updateInventory();
+        return myTreat; 
     }
 
     private void updateInventory() throws VendingMachinePersistenceException {
@@ -60,7 +66,8 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
         List<Treat> treatList = this.getTreats();
 
         for (Treat currentTreat : treatList) {
-            out.println(currentTreat.getName() + DELIMITER
+            out.println(currentTreat.getTreatId() + DELIMITER
+                    + currentTreat.getName() + DELIMITER
                     + currentTreat.getCost() + DELIMITER
                     + currentTreat.getInventory());
             out.flush();
@@ -93,15 +100,16 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
             // break up the line into tokens
             currentTokens = currentLine.split(DELIMITER);
 
-            Treat currentTreat = new Treat(currentTokens[0]);
-            // Set the remaining vlaues on currentStudent manually
-            BigDecimal treatCost = new BigDecimal(currentTokens[1]);
-            int treatInventory = Integer.parseInt(currentTokens[2]);
+            int treatId = Integer.parseInt(currentTokens[0]);
+            Treat currentTreat = new Treat(treatId);
+            currentTreat.setName(currentTokens[1]);
+            BigDecimal treatCost = new BigDecimal(currentTokens[2]);
+            int treatInventory = Integer.parseInt(currentTokens[3]);
             currentTreat.setCost(treatCost);
             currentTreat.setInventory(treatInventory);
 
             // Put currentTreat into the map using treat name as the key
-            treats.put(currentTreat.getName(), currentTreat);
+            treats.put(currentTreat.getTreatId(), currentTreat);
         }
         // close scanner
         scanner.close();

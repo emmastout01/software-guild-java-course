@@ -1,4 +1,5 @@
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,13 @@ public class WarmUpLists {
         
         List<Integer> newArray = intersect(array1, array2);
         System.out.println("New array: " + newArray);
+        
+        BigDecimal first = new BigDecimal("4.6");
+        BigDecimal second = new BigDecimal("4.3");
+        
+        int answer = first.compareTo(second);
+        
+        System.out.println("Answer: " + answer);
         
     }
     
