@@ -1,4 +1,4 @@
-1::Snickers::1.50::22
-2::Butterfingers::1.75::4
-3::Potato Chips::1.25::9
-4::Zebra Cakes::2.75::0
+1::Snickers::1.50::19
+2::Butterfingers::1.75::8
+3::Potato Chips::1.25::6
+4::Zebra Cakes::2.75::10

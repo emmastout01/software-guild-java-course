@@ -65,16 +65,13 @@ public class VendingMachineController {
     public void purchaseTreat()
             throws VendingMachinePersistenceException {
         boolean hasErrors = false;
-        //Prompt user to add money
-        BigDecimal addedMoney = view.addMoney();
 
-        //Prompt user to select a treat to buy
-        int myTreatId = view.chooseTreat();
-
-        //Send the treat selection + money amt to service for validation check
-        //RIGHT NOW this is going in an infinite loop, figure this out
-        do{
-            addedMoney = view.addMoney();
+        do {
+            //Prompt user to add money
+            BigDecimal addedMoney = view.addMoney();
+            //Prompt user to select a treat to buy
+            int myTreatId = view.chooseTreat();
+            //Send the treat selection + money amt to service for validation check
             try {
                 Change changeToReturn = service.purchaseTreat(addedMoney, myTreatId);
                 returnChange(changeToReturn);

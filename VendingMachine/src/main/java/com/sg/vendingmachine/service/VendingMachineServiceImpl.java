@@ -59,6 +59,7 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         //If user has insufficient funds throw an insufficient funds error
         BigDecimal myTreatCost = myTreat.getCost();
         int myTreatInventory = myTreat.getInventory();
+        //Do I need this? What is the purpose of moneyInMachine?\
         moneyInMachine = addedMoney;
 
         if(addedMoney.compareTo(myTreatCost) >= 0 && myTreatInventory > 0) {

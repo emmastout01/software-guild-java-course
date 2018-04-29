@@ -38,7 +38,23 @@ public class VendingMachineDaoFileImplTest {
     @Before
     public void setUp()
             throws Exception {
-
+        /*We are assuming that 4 Treats already exist in our file:
+        1 . Snickers
+        Cost: 1.50
+        Inventory: will vary
+        
+        2. Butterfingers
+        Cost: 1.75
+        Inventory: will vary
+        
+        3. Potato Chips
+        Cost: 1.25
+        Inventory: will vary
+        
+         3. Zebra Cakes
+        Cost: 2.75
+        Inventory: will vary
+         */
     }
 
     @After
@@ -50,10 +66,11 @@ public class VendingMachineDaoFileImplTest {
      */
     @Test
     public void testGetTreats() throws Exception {
-    
+        //Run getTreats
+        List<Treat> treatList = dao.getTreats();
 
-//Run getTreats
-        //Assert that both treats are in the getTreats file
+        //Assert that all 4 treats are in the getTreats file
+        assertEquals(4, treatList.size());
     }
 
     /**
@@ -62,10 +79,15 @@ public class VendingMachineDaoFileImplTest {
     @Test
     public void testGetMyTreat() throws Exception {
         //Run getMyTreat on the first treat
-
+        Treat treat1 = dao.getMyTreat(1);
         //assert that we get back the first treat
+        assertEquals("Snickers", treat1.getName());
+        
         //Run getMyTreat on the second treat
+           Treat treat2 = dao.getMyTreat(2);
         //assert that we get back the second treat
+        assertEquals("Butterfingers", treat2.getName());
+
     }
 
     /**
@@ -73,11 +95,23 @@ public class VendingMachineDaoFileImplTest {
      */
     @Test
     public void testUpdateTreat() throws Exception {
-        //Run updateTreat on the first treat
-
+        Treat treat1 = dao.getMyTreat(1);
+        int treat1Inventory = treat1.getInventory();
+        
+         //Run updateTreat on the first treat
+        Treat treat1Updated = dao.updateTreat(1);
+        int treat1UpdatedInventory = treat1Updated.getInventory();
         //assert that we get back the first treat with new inventory amount
-        //Run update on the second treat
-        //assert that we get back the second treat with new inventory amount        
+        assertEquals((treat1Inventory-1), treat1UpdatedInventory);
+        
+        Treat treat2 = dao.getMyTreat(2);
+        int treat2Inventory = treat2.getInventory();
+        
+         //Run updateTreat on the first treat
+        Treat treat2Updated = dao.updateTreat(2);
+        int treat2UpdatedInventory = treat2Updated.getInventory();
+        //assert that we get back the first treat with new inventory amount
+        assertEquals((treat2Inventory-1), treat2UpdatedInventory);      
     }
 
 }
