@@ -17,21 +17,20 @@ import java.util.List;
 public class VendingMachineDaoStubImpl implements VendingMachineDao {
 
     Treat treat1 = new Treat(1);
+    Treat treat2 = new Treat(2);
+    Treat treat3 = new Treat(3);
+    
     List<Treat> treatList = new ArrayList<>();
 
-    private void generateTreatList() {
+    private List<Treat> generateTreatList() {
 
         treat1.setName("100 Grand");
         treat1.setCost(BigDecimal.ONE);
         treat1.setInventory(3);
 
-        Treat treat2 = new Treat(2);
-
         treat2.setName("Milky Way");
         treat2.setCost(BigDecimal.TEN);
         treat2.setInventory(5);
-
-        Treat treat3 = new Treat(3);
 
         treat3.setName("Skittles");
         treat3.setCost(BigDecimal.TEN);
@@ -40,6 +39,8 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao {
         treatList.add(treat1);
         treatList.add(treat2);
         treatList.add(treat3);  
+        
+        return treatList;
     }
 
     @Override
@@ -51,20 +52,31 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao {
     @Override
     public Treat getMyTreat(int treatId) throws VendingMachinePersistenceException {
         generateTreatList();
-        if (treatId == 1) {
-            return treat1;
-        } else {
-            return null;
+        //Set up so that we're getting the treat with the incoming treat id
+        switch(treatId) {
+            case 1: 
+                return treat1;
+            case 2:
+                return treat2;
+            case 3:
+                return treat3;
+            default: 
+                return null;
         }
     }
 
     @Override
     public Treat updateTreat(int treatId) throws VendingMachinePersistenceException {
         generateTreatList();
-          if (treatId == 1) {
-            return treat1;
-        } else {
-            return null;
+           switch(treatId) {
+            case 1: 
+                return treat1;
+            case 2:
+                return treat2;
+            case 3:
+                return treat3;
+            default: 
+                return null;
         }
     }
 

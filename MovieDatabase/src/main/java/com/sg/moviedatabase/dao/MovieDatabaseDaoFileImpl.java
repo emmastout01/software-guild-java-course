@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -108,7 +110,12 @@ public class MovieDatabaseDaoFileImpl implements MovieDatabaseDao {
             currentTokens = currentLine.split(DELIMITER);
 
             Movie currentMovie = new Movie(currentTokens[0]);
-            currentMovie.setReleaseDate(currentTokens[1]);
+            
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate releaseDate = LocalDate.parse(currentTokens[1], formatter);
+    
+            currentMovie.setReleaseDate(releaseDate);
             currentMovie.setMpaaRating(currentTokens[2]);
             currentMovie.setDirectorName(currentTokens[3]);
             currentMovie.setStudio(currentTokens[4]);

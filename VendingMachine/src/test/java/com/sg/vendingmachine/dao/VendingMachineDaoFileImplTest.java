@@ -38,7 +38,7 @@ public class VendingMachineDaoFileImplTest {
     @Before
     public void setUp()
             throws Exception {
-        /*We are assuming that 4 Treats already exist in our file:
+        /*4 Treats already exist in our file:
         1 . Snickers
         Cost: 1.50
         Inventory: will vary
