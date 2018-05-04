@@ -55,7 +55,7 @@ public class MovieDatabaseDaoTest {
     @Test
     public void testGetAllMovies() throws Exception {
         Movie movie1 = new Movie("Muppet Treasure Island");
-        movie1.setReleaseDate("1998");
+//        movie1.setReleaseDate("1998");
         movie1.setDirectorName("Jim Henson");
         movie1.setMpaaRating("PG");
         movie1.setUserRating("Two thumbs up!");
@@ -64,7 +64,7 @@ public class MovieDatabaseDaoTest {
         dao.addMovie(movie1.getTitle(), movie1);
 
         Movie movie2 = new Movie("Labyrinth");
-        movie2.setReleaseDate("1986");
+//        movie2.setReleaseDate("1986");
         movie2.setDirectorName("Jim Henson");
         movie2.setMpaaRating("PG");
         movie2.setUserRating("You remind me of the babe");
@@ -81,7 +81,7 @@ public class MovieDatabaseDaoTest {
     @Test
     public void testAddGetMovie() throws Exception {
         Movie movie = new Movie("Muppet Treasure Island");
-        movie.setReleaseDate("1998");
+//        movie.setReleaseDate("1998");
         movie.setDirectorName("Jim Henson");
         movie.setMpaaRating("PG");
         movie.setUserRating("Two thumbs up!");
@@ -101,7 +101,7 @@ public class MovieDatabaseDaoTest {
     public void testEditMovie() throws Exception {
         //Add a movie to the file
         Movie movie1 = new Movie("Muppet Treasure Island");
-        movie1.setReleaseDate("1998");
+//        movie1.setReleaseDate("1998");
         movie1.setDirectorName("Jim Henson");
         movie1.setMpaaRating("PG");
         movie1.setUserRating("Two thumbs up!");
@@ -130,7 +130,7 @@ public class MovieDatabaseDaoTest {
     public void testRemoveMovie() throws Exception {
 
         Movie movie1 = new Movie("Muppet Treasure Island");
-        movie1.setReleaseDate("1998");
+//        movie1.setReleaseDate("1998");
         movie1.setDirectorName("Jim Henson");
         movie1.setMpaaRating("PG");
         movie1.setUserRating("Two thumbs up!");
@@ -139,7 +139,7 @@ public class MovieDatabaseDaoTest {
         dao.addMovie(movie1.getTitle(), movie1);
 
         Movie movie2 = new Movie("Labyrinth");
-        movie2.setReleaseDate("1986");
+//        movie2.setReleaseDate("1986");
         movie2.setDirectorName("Jim Henson");
         movie2.setMpaaRating("PG");
         movie2.setUserRating("You remind me of the babe");
@@ -165,7 +165,7 @@ public class MovieDatabaseDaoTest {
     public void testSearchMovies() throws Exception {
         //First add 2 movies: 'Land Before Time" and "Labyrinth"
         Movie movie1 = new Movie("Land Before Time");
-        movie1.setReleaseDate("1994");
+//        movie1.setReleaseDate("1994");
         movie1.setDirectorName("");
         movie1.setMpaaRating("G");
         movie1.setUserRating("A classic for all time!");
@@ -174,7 +174,7 @@ public class MovieDatabaseDaoTest {
         dao.addMovie(movie1.getTitle(), movie1);
 
         Movie movie2 = new Movie("Labyrinth");
-        movie2.setReleaseDate("1986");
+//        movie2.setReleaseDate("1986");
         movie2.setDirectorName("Jim Henson");
         movie2.setMpaaRating("PG");
         movie2.setUserRating("You remind me of the babe");
