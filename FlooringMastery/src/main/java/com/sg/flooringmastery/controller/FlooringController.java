@@ -80,7 +80,7 @@ public class FlooringController {
         //Ask the user to enter information about the order
         Order orderIn = view.getOrderInfo();
         //Send order information to service to do validation and calcs
-        Order addedOrder = service.calculateOrderTotals(orderIn);
+        Order addedOrder = service.validateOrderAndCalculateTotals(orderIn);
         //Display full order for user; ask user to confirm
         String userResponse = view.displayAddOrderConfirmation(addedOrder).toLowerCase();
         //If user confirms, add order to file via service/dao
@@ -106,7 +106,7 @@ public class FlooringController {
         //Get edited order from user
         Order editedOrder = view.getEditedOrder(orderToEdit);
         //Calculate new order totals in service
-        editedOrder = service.calculateOrderTotals(editedOrder);
+        editedOrder = service.validateOrderAndCalculateTotals(editedOrder);
         //Save the edited information
         service.editOrder(date, orderId, editedOrder);
 

@@ -88,9 +88,8 @@ public class FlooringView {
         String stateName = io.readString("Your state abbreviation "
                 + "(ie MN for Minnesota): ");
         String productType = io.readString("Product name (see above list for options): ");
-        String areaString = io.readString("Area of the floor, in square feet: ");
+        BigDecimal area = io.readBigDecimalFromString("Area of the floor, in square feet: ");
         io.print("");
-        BigDecimal area = new BigDecimal(areaString);
 
         myOrder.setCustomerName(CustomerName);
         myOrder.setProduct(new Product(productType));
@@ -161,6 +160,7 @@ public class FlooringView {
                 currentProductType, currentProductType);
         String areaAsString = readStringOrDefault("Area (%s): ", 
                 currentAreaAsString, currentAreaAsString);
+        
         BigDecimal area = new BigDecimal(areaAsString);
 
         

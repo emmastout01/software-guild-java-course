@@ -32,10 +32,28 @@ public class FlooringService {
         this.stateDao = stateDao;
     }
 
-    public Order calculateOrderTotals(Order orderIn)
+    public Order validateOrderAndCalculateTotals(Order orderIn)
             throws FlooringMasteryPersistenceException {
+        
+        //First, check that user entered all fields
+        
+        
+        //Then check the product type against the list of products
+        
+        
+        //Then check the state name against the list of states
+        
+        
+        //Then check each 
+        
+        
+        
+        
         String productType = orderIn.getProduct().getProductType();
         String stateName = orderIn.getState().getStateName();
+        
+        
+        
 
         Product orderProduct = productDao.getProduct(productType);
         State orderState = stateDao.getState(stateName);
@@ -50,7 +68,7 @@ public class FlooringService {
 
         BigDecimal preTaxTotal = materialCost.add(laborCost);
         BigDecimal orderTax = calculateOrderTax(preTaxTotal, stateName);
-
+        
         BigDecimal orderTotal = calculateOrderTotal(preTaxTotal, orderTax);
 
         orderIn.setMaterialCost(materialCost);
@@ -162,7 +180,7 @@ if (!message.iEmpty()) {
         
         We can also make this more generic: 
         
-        Create a new class, AddOrderResponse
+        Create a new class, ValidationResponse
         
         private boolean successs;
         private String message = "";
