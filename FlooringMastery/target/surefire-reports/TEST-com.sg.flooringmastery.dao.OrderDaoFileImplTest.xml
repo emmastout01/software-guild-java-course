@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="com.sg.flooringmastery.dao.OrderDaoFileImplTest" time="0.28" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="com.sg.flooringmastery.dao.OrderDaoFileImplTest" time="0.399" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/jre/lib"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/emmastout/NetBeansProjects/FlooringMastery"/>
+    <property name="user.dir" value="/Users/emmastout/Documents/SoftwareGuild/emma-stout-individual-work/FlooringMastery"/>
     <property name="java.runtime.version" value="1.8.0_161-b12"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -62,8 +62,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testUpdateOrder" time="0.161"/>
-  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testRemoveOrder" time="0.012"/>
-  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testAddGetOrder" time="0.005"/>
-  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testGetAllOrdersForDate" time="0.007"/>
+  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testUpdateOrder" time="0.221"/>
+  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testRemoveOrder" time="0.019"/>
+  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testAddGetOrder" time="0.006"/>
+  <testcase classname="com.sg.flooringmastery.dao.OrderDaoFileImplTest" name="testGetAllOrdersForDate" time="0.008"/>
 </testsuite>

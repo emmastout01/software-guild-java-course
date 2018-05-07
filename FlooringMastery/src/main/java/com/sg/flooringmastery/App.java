@@ -6,15 +6,8 @@
 package com.sg.flooringmastery;
 
 import com.sg.flooringmastery.controller.FlooringController;
-import com.sg.flooringmastery.dao.OrderDao;
-import com.sg.flooringmastery.dao.OrderDaoFileImpl;
-import com.sg.flooringmastery.dao.ProductDao;
-import com.sg.flooringmastery.dao.ProductDaoFileImpl;
-import com.sg.flooringmastery.dao.StateDao;
-import com.sg.flooringmastery.dao.StateDaoFileImpl;
-import com.sg.flooringmastery.service.FlooringService;
-import com.sg.flooringmastery.ui.ConsoleIO;
-import com.sg.flooringmastery.ui.FlooringView;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -23,15 +16,24 @@ import com.sg.flooringmastery.ui.FlooringView;
 public class App {
     public static void main(String[] args) {
         
-        ConsoleIO io = new ConsoleIO();
-        FlooringView view = new FlooringView(io);
-        OrderDao odao = new OrderDaoFileImpl();
-        ProductDao pdao = new ProductDaoFileImpl();
-        StateDao sdao = new StateDaoFileImpl();
-        FlooringService service = new FlooringService(odao, pdao, sdao);
-        
-        FlooringController controller = new FlooringController(view, service);
-        
+//        ConsoleIO io = new ConsoleIO();
+//        FlooringView view = new FlooringView(io);
+//        OrderDao odao = new OrderDaoFileImpl();
+//        ProductDao pdao = new ProductDaoFileImpl();
+//        StateDao sdao = new StateDaoFileImpl();
+//        FlooringService service = new FlooringService(odao, pdao, sdao);
+//        
+//        FlooringController controller = new FlooringController(view, service);
+//        
+//        controller.run();
+        ApplicationContext ctx
+                = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FlooringController controller
+                = ctx.getBean("controller", FlooringController.class);
         controller.run();
+       
+
     }
+    
+       
 }
