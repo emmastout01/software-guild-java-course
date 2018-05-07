@@ -32,28 +32,77 @@ public class FlooringService {
         this.stateDao = stateDao;
     }
 
-    public Order validateOrderAndCalculateTotals(Order orderIn)
+    public ValidationResponse<Order> validateOrder(Order orderIn)
             throws FlooringMasteryPersistenceException {
+
+        ValidationResponse<Order> result = getValidationResult(orderIn);
+        if (!result.isSuccess()) {
+            return result;
+        }
+
+
+        return result;
+
+    }
+
+    private ValidationResponse<Order> getValidationResult(Order orderIn)
+            throws FlooringMasteryPersistenceException {
+        ValidationResponse<Order> result = new ValidationResponse<>();
+
+        List<Product> productList = productDao.getAllProducts();
+        List<State> stateList = stateDao.getAllStates();
+        String productName = orderIn.getProduct().getProductType();
+        String stateName = orderIn.getState().getStateName();
+        boolean isValidProduct = false;
+        boolean isValidState = false;
+
+        for (Product product : productList) {
+            if (productName.equalsIgnoreCase(product.getProductType())) {
+                isValidProduct = true;
+            }
+        }
+        for (State state : stateList) {
+            if (stateName.equalsIgnoreCase(state.getStateName())) {
+                isValidState = true;
+            }
+        }
         
-        //First, check that user entered all fields
-        
-        
-        //Then check the product type against the list of products
-        
-        
-        //Then check the state name against the list of states
-        
-        
-        //Then check each 
-        
-        
-        
-        
+        if (!hasValue(orderIn.getCustomerName())) {
+            result.addToMessage("Customer Name is required.");
+        }
+        if (!hasValue(orderIn.getProduct().getProductType())) {
+            result.addToMessage("Product Type is required.");
+        }
+        if (!hasValue(orderIn.getState().getStateName())) {
+            result.addToMessage("State Abbr is required.");
+        }
+        if (orderIn.getArea() == null || orderIn.getArea().compareTo(BigDecimal.ZERO) == -1) {
+            result.addToMessage("Area is required and must be a positive value.");
+        }
+
+        if (!isValidProduct) {
+            result.addToMessage("Product name not in our database. "
+                    + "Please check spelling.");
+        }
+
+        if (!isValidState) {
+            result.addToMessage("That state abbreviation is not in our database. "
+                    + "Please check spelling and "
+                    + "confirm our services are available in your state.");
+        }
+
+        return result;
+    }
+
+    private boolean hasValue(String str) {
+        return str != null && !str.trim().isEmpty();
+    }
+
+    public Order calculateOrderTotals(Order orderIn)
+            throws FlooringMasteryPersistenceException {
+
         String productType = orderIn.getProduct().getProductType();
         String stateName = orderIn.getState().getStateName();
-        
-        
-        
 
         Product orderProduct = productDao.getProduct(productType);
         State orderState = stateDao.getState(stateName);
@@ -68,7 +117,7 @@ public class FlooringService {
 
         BigDecimal preTaxTotal = materialCost.add(laborCost);
         BigDecimal orderTax = calculateOrderTax(preTaxTotal, stateName);
-        
+
         BigDecimal orderTotal = calculateOrderTotal(preTaxTotal, orderTax);
 
         orderIn.setMaterialCost(materialCost);
@@ -77,14 +126,15 @@ public class FlooringService {
         orderIn.setTotal(orderTotal);
 
         return orderIn;
-
     }
 
-    public ValidationResponse addOrderConfirmed(Order addedOrder)
+    public Order addOrderConfirmed(Order addedOrder)
             throws FlooringMasteryPersistenceException {
-        ValidationResponse response = new ValidationResponse();     
-        orderDao.addOrder(LocalDate.now(), addedOrder);
-        return response;
+        try {
+            orderDao.addOrder(LocalDate.now(), addedOrder);
+        } catch (DataException ex) {
+        }
+        return addedOrder;
     }
 
     public List<Order> getAllOrders(LocalDate date)
@@ -97,17 +147,17 @@ public class FlooringService {
         return productDao.getAllProducts();
     }
 
-    public Order getOrder(LocalDate date, int orderId) 
+    public Order getOrder(LocalDate date, int orderId)
             throws FlooringMasteryPersistenceException {
         return orderDao.getOrder(date, orderId);
     }
 
-    public Order editOrder(LocalDate date, int orderId, Order editedOrder) 
+    public Order editOrder(LocalDate date, int orderId, Order editedOrder)
             throws FlooringMasteryPersistenceException {
         return orderDao.updateOrder(date, orderId, editedOrder);
     }
 
-    public Order removeOrder(int orderIn, LocalDate date) 
+    public Order removeOrder(int orderIn, LocalDate date)
             throws FlooringMasteryPersistenceException {
         Order orderToRemove = orderDao.removeOrder(date, orderIn);
         return orderToRemove;
@@ -165,61 +215,4 @@ public class FlooringService {
         return laborCost;
     }
 
-        private void validateOrder(Order orderIn) {
-
-        /*
-        String message = "";
-        if (something is wrong)
-    message += "";
-
-if (!message.iEmpty()) {
-        throw new ValidExc (message);
-        }        */
- /*
-        OR:
-        
-        We can also make this more generic: 
-        
-        Create a new class, ValidationResponse
-        
-        private boolean successs;
-        private String message = "";
-        
-        private Order order; <-- this is the order that was added
-        
-        public boolean isSuccess() {
-        return success;
-        }
-        
-        throw in getters and setters--but for set message:
-        this.mesasge += message + (new line)
-        
-        -------------
-        back in the add order method in the service:
-        
-        instead of returning an order, return an AddOrderResponse
-        
-        AddOrderResponse response = new AddOrderResponse();
-         
-        if (something is wrong) {
-            response.addMessage(explain thing that was wrong);
-        } else if () {
-        } else {
-        response.isSuccess();
-        }
-        
-        return response;
-        ------------
-        back in the controller:
-        
-        ArddOrderResponse response = service.add(order);
-        
-        if(response.isSuccess()) {
-        sout (success!
-        } else {
-        sout (response.getMessage)
-        }
-
-         */
-    }
 }

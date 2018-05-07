@@ -9,6 +9,7 @@ import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
 import com.sg.flooringmastery.models.Order;
 import com.sg.flooringmastery.models.Product;
 import com.sg.flooringmastery.service.FlooringService;
+import com.sg.flooringmastery.service.ValidationResponse;
 import com.sg.flooringmastery.ui.FlooringView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -75,12 +76,22 @@ public class FlooringController {
     private void addOrder() throws FlooringMasteryPersistenceException {
 
         List<Product> productList = service.getAllProducts();
-
         view.displayProductNames(productList);
+
         //Ask the user to enter information about the order
+        //Get the order info from the view. Send that to the service to validate
         Order orderIn = view.getOrderInfo();
-        //Send order information to service to do validation and calcs
-        Order addedOrder = service.validateOrderAndCalculateTotals(orderIn);
+        ValidationResponse<Order> response
+                = service.validateOrder(orderIn);
+
+        if (!response.isSuccess()) {
+            view.displayErrorMessage(response.getMessage());
+            return;
+        }
+
+        //After the order has been validated, calculate the order totals
+        Order addedOrder = service.calculateOrderTotals(orderIn);
+
         //Display full order for user; ask user to confirm
         String userResponse = view.displayAddOrderConfirmation(addedOrder).toLowerCase();
         //If user confirms, add order to file via service/dao
@@ -106,7 +117,8 @@ public class FlooringController {
         //Get edited order from user
         Order editedOrder = view.getEditedOrder(orderToEdit);
         //Calculate new order totals in service
-        editedOrder = service.validateOrderAndCalculateTotals(editedOrder);
+
+//        editedOrder = service.validateOrderAndCalculateTotals(editedOrder);
         //Save the edited information
         service.editOrder(date, orderId, editedOrder);
 

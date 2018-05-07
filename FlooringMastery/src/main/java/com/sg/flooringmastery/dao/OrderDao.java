@@ -6,6 +6,7 @@
 package com.sg.flooringmastery.dao;
 
 import com.sg.flooringmastery.models.Order;
+import com.sg.flooringmastery.service.DataException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface OrderDao {
             throws FlooringMasteryPersistenceException;
 
     public Order addOrder(LocalDate date, Order order)
-            throws FlooringMasteryPersistenceException;
+            throws FlooringMasteryPersistenceException, DataException;
 
     public Order updateOrder(LocalDate date, int orderId, Order order)
             throws FlooringMasteryPersistenceException;

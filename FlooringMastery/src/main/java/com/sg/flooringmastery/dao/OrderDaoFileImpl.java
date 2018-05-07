@@ -8,6 +8,7 @@ package com.sg.flooringmastery.dao;
 import com.sg.flooringmastery.models.Order;
 import com.sg.flooringmastery.models.Product;
 import com.sg.flooringmastery.models.State;
+import com.sg.flooringmastery.service.DataException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,7 +46,8 @@ public class OrderDaoFileImpl implements OrderDao {
 
     @Override
     public Order addOrder(LocalDate date, Order order)
-            throws FlooringMasteryPersistenceException {
+            throws FlooringMasteryPersistenceException,
+            DataException {
 
         int orderId;
 

@@ -11,11 +11,12 @@ import com.sg.flooringmastery.models.Order;
  *
  * @author emmastout
  */
-public class ValidationResponse {
+public class ValidationResponse<T> {
 
-    private boolean success;
+    private boolean success = true;
     private String message = "";
     private Order order;
+    private T payload;
 
     public String getMessage() {
         return message;
@@ -23,14 +24,23 @@ public class ValidationResponse {
 
     public void addToMessage(String message) {
         this.message += message + "\n";
+        this.success = false;
     }
 
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    
+
     public boolean isSuccess() {
         return success;
+    }
+
+    public T getPayload() {
+        return payload;
+    }
+
+    public void setPayload(T payload) {
+        this.payload = payload;
     }
 
 }
