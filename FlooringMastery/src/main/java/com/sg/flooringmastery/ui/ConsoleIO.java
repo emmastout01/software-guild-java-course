@@ -68,6 +68,13 @@ public class ConsoleIO {
         return input.nextLine();
     }
 
+    public BigDecimal readBigDecimalPrintf(String prompt, String args) {
+        BigDecimal result;
+        String userInput = readStringPrintf(prompt, args);
+        result = readBigDecimalFromString(userInput, 0);
+        return result;
+    }
+
     public BigDecimal readBigDecimalFromString(String prompt) {
         boolean isValid = false;
         BigDecimal result = BigDecimal.ZERO;
@@ -79,7 +86,7 @@ public class ConsoleIO {
                 result = new BigDecimal(value);
                 isValid = true;
             } catch (NumberFormatException ex) {
-                System.out.printf("The value '%s' is not a number. \n", ex);
+                System.out.printf("The value '%s' is not a number. \n", value);
             }
         } while (!isValid);
         return result;
@@ -95,10 +102,19 @@ public class ConsoleIO {
             if ((result.compareTo(min) == 1 || result.compareTo(min) == 0)) {
                 isValid = true;
             } else {
-                 System.out.printf("The value must be greater than 0.");
+                System.out.printf("The value must be greater than 0.");
             }
         } while (!isValid);
         return result;
+    }
+
+    public String readStringOrDefault(String prompt, String args, String defaultMessage) {
+        String result = readStringPrintf(prompt, args);
+        if (!result.isEmpty()) {
+            return result;
+        } else {
+            return defaultMessage;
+        }
     }
 
     public LocalDate readLocalDateFromString(String prompt) {
@@ -110,6 +126,38 @@ public class ConsoleIO {
 
         } while (!isValid);
         return date;
+    }
+
+    BigDecimal validateBigDecimal(String userInput) {
+        boolean isValid = false;
+        BigDecimal result = BigDecimal.ZERO;
+
+        do {
+            try {
+                result = new BigDecimal(userInput);
+                isValid = true;
+            } catch (NumberFormatException ex) {
+                System.out.printf("The value '%s' is not a number. \n", userInput);
+            }
+
+        } while (!isValid);
+        return result;
+    }
+
+    BigDecimal validateBigDecimal(String userInput, int minimum) {
+        boolean isValid = false;
+        BigDecimal result = BigDecimal.ZERO;
+        BigDecimal min = new BigDecimal(minimum);
+
+        do {
+            result = validateBigDecimal(userInput);
+            if ((result.compareTo(min) == 1 || result.compareTo(min) == 0)) {
+                isValid = true;
+            } else {
+                System.out.printf("The value must be greater than 0.");
+            }
+        } while (!isValid);
+        return result;
     }
 
 }

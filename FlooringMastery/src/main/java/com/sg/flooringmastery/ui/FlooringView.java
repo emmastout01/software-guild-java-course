@@ -151,18 +151,17 @@ public class FlooringView {
         String currentStateName = currentOrder.getState().getStateName();
         String currentProductType = currentOrder.getProduct().getProductType();
         String currentAreaAsString = currentOrder.getArea().toString();
+        BigDecimal currentArea = currentOrder.getArea();
 
-        String customerName = readStringOrDefault("Customer name (%s): ", 
+        String customerName = io.readStringOrDefault("Customer name (%s): ", 
                 currentCustomerName, currentCustomerName);
-        String stateName = readStringOrDefault("State (%s): ", 
+        String stateName = io.readStringOrDefault("State (%s): ", 
                 currentStateName, currentStateName);
-        String productType = readStringOrDefault("Product name (%s): ", 
+        String productType = io.readStringOrDefault("Product name (%s): ", 
                 currentProductType, currentProductType);
-        String areaAsString = readStringOrDefault("Area (%s): ", 
+        String areaAsString = io.readStringOrDefault("Area (%s): ", 
                 currentAreaAsString, currentAreaAsString);
-        
-        BigDecimal area = new BigDecimal(areaAsString);
-
+        BigDecimal area = io.validateBigDecimal(areaAsString, 0);
         
         currentOrder.setCustomerName(customerName);
         currentOrder.setState(new State(stateName));
@@ -172,15 +171,6 @@ public class FlooringView {
         return currentOrder;
     }
     
-    
-    public String readStringOrDefault(String prompt, String args, String defaultMessage) {
-        String result = io.readStringPrintf(prompt, args);
-        if (!result.isEmpty()) {
-            return result;
-        } else {
-            return defaultMessage;
-        }
-    }
     
      public void displayEditOrderSuccess() {
         io.print("Your order has been successfully edited.");
