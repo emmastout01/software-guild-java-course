@@ -161,7 +161,8 @@ public class FlooringView {
                 currentProductType, currentProductType);
         String areaAsString = io.readStringOrDefault("Area (%s): ", 
                 currentAreaAsString, currentAreaAsString);
-        BigDecimal area = io.validateBigDecimal(areaAsString, 0);
+        BigDecimal area = io.validateBigDecimal(areaAsString);
+
         
         currentOrder.setCustomerName(customerName);
         currentOrder.setState(new State(stateName));

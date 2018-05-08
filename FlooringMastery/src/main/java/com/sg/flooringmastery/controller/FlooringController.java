@@ -117,8 +117,16 @@ public class FlooringController {
         //Get edited order from user
         Order editedOrder = view.getEditedOrder(orderToEdit);
         //Calculate new order totals in service
+        ValidationResponse<Order> response
+                = service.validateOrder(editedOrder);
 
-//        editedOrder = service.validateOrderAndCalculateTotals(editedOrder);
+        if (!response.isSuccess()) {
+            view.displayErrorMessage(response.getMessage());
+            return;
+        }
+
+        //After the order has been validated, calculate the order totals
+        editedOrder = service.calculateOrderTotals(editedOrder);
         //Save the edited information
         service.editOrder(date, orderId, editedOrder);
 

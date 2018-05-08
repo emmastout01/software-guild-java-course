@@ -13,6 +13,7 @@ import com.sg.flooringmastery.models.Order;
 import com.sg.flooringmastery.models.Product;
 import com.sg.flooringmastery.models.State;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -40,7 +41,6 @@ public class FlooringService {
             return result;
         }
 
-
         return result;
 
     }
@@ -66,7 +66,7 @@ public class FlooringService {
                 isValidState = true;
             }
         }
-        
+
         if (!hasValue(orderIn.getCustomerName())) {
             result.addToMessage("Customer Name is required.");
         }
@@ -76,7 +76,8 @@ public class FlooringService {
         if (!hasValue(orderIn.getState().getStateName())) {
             result.addToMessage("State Abbr is required.");
         }
-        if (orderIn.getArea() == null || orderIn.getArea().compareTo(BigDecimal.ZERO) == -1) {
+        if (orderIn.getArea() == null
+                || orderIn.getArea().compareTo(BigDecimal.ZERO) == -1) {
             result.addToMessage("Area is required and must be a positive value.");
         }
 
@@ -128,13 +129,15 @@ public class FlooringService {
         return orderIn;
     }
 
-    public Order addOrderConfirmed(Order addedOrder)
+    public ValidationResponse<Order> addOrderConfirmed(Order addedOrder)
             throws FlooringMasteryPersistenceException {
+        ValidationResponse<Order> result = getValidationResult(addedOrder);
         try {
             orderDao.addOrder(LocalDate.now(), addedOrder);
         } catch (DataException ex) {
+            result.addToMessage(ex.getMessage());
         }
-        return addedOrder;
+        return result;
     }
 
     public List<Order> getAllOrders(LocalDate date)
@@ -182,6 +185,7 @@ public class FlooringService {
 
         //Multiply the tax rate by the pre-tax total
         BigDecimal orderTax = preTaxTotal.multiply(taxRate);
+        orderTax = orderTax.setScale(2, RoundingMode.HALF_UP);
 
         //Return orderTax
         return orderTax;
@@ -196,6 +200,7 @@ public class FlooringService {
 
         //Multiply the cost per sq foot by the area
         BigDecimal materialCost = materialCostPerSqFoot.multiply(area);
+        materialCost = materialCost.setScale(2, RoundingMode.HALF_UP);
 
         //Return material cost
         return materialCost;
@@ -210,6 +215,7 @@ public class FlooringService {
 
         //Multiply the cost per sq foot by the area
         BigDecimal laborCost = laborCostPerSqFoot.multiply(area);
+        laborCost = laborCost.setScale(2, RoundingMode.HALF_UP);
 
         //Return material cost
         return laborCost;

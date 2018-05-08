@@ -132,7 +132,7 @@ public class ConsoleIO {
         boolean isValid = false;
         BigDecimal result = BigDecimal.ZERO;
 
-        do {
+//        do {
             try {
                 result = new BigDecimal(userInput);
                 isValid = true;
@@ -140,7 +140,7 @@ public class ConsoleIO {
                 System.out.printf("The value '%s' is not a number. \n", userInput);
             }
 
-        } while (!isValid);
+//        } while (!isValid);
         return result;
     }
 
@@ -149,14 +149,15 @@ public class ConsoleIO {
         BigDecimal result = BigDecimal.ZERO;
         BigDecimal min = new BigDecimal(minimum);
 
-        do {
+//        do {
             result = validateBigDecimal(userInput);
             if ((result.compareTo(min) == 1 || result.compareTo(min) == 0)) {
                 isValid = true;
             } else {
                 System.out.printf("The value must be greater than 0.");
+                
             }
-        } while (!isValid);
+//        } while (!isValid);
         return result;
     }
 
