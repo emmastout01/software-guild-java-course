@@ -115,6 +115,10 @@ public class FlooringController {
         //Get the order in question
         Order orderToEdit = service.getOrder(date, orderId);
         //Get edited order from user
+        if (orderToEdit == null) {
+            System.out.println("No such order");
+            return;
+        }
         Order editedOrder = view.getEditedOrder(orderToEdit);
         //Calculate new order totals in service
         ValidationResponse<Order> response
