@@ -38,21 +38,6 @@ public class ClassRosterServiceLayerTest {
         service = new ClassRosterServiceLayerImpl(dao, auditDao);
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of createStudent method, of class ClassRosterServiceLayer.

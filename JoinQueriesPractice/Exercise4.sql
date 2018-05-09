@@ -3,3 +3,7 @@
 */
 
 USE SWCCorp;
+
+SELECT * 
+from Employee
+cross join Location;

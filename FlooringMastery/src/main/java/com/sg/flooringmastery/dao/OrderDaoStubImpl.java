@@ -22,7 +22,7 @@ import java.util.List;
 public class OrderDaoStubImpl implements OrderDao {
 
     Order order1;
-    private LocalDate myDate = LocalDate.of(2017, Month.MARCH, 31);
+    private LocalDate myDate = LocalDate.of(2017, Month.MARCH, 24);
     List<Order> orderList = new ArrayList<>();
 
     public OrderDaoStubImpl() {
@@ -44,6 +44,7 @@ public class OrderDaoStubImpl implements OrderDao {
         order1Product.setCostPerSqFoot(costPerSqFoot1);
         order1Product.setLaborCostPerSqFoot(laborCostPerSqFoot1);
 
+        order1.setOrderId(1);
         order1.setDate(myDate);
         order1.setCustomerName("Beth Jacob");
         order1.setState(order1State);
@@ -64,26 +65,22 @@ public class OrderDaoStubImpl implements OrderDao {
 
     @Override
     public Order addOrder(LocalDate date, Order order) throws FlooringMasteryPersistenceException, DataException {
-//        if (date == myDate && order.getOrderId() == order1.getOrderId()) {
-//            return order1;
-//        } else {
-//            return null;
-//        }
+        return order1;
     }
 
     @Override
     public Order updateOrder(LocalDate date, int orderId, Order order) throws FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return order1;
     }
 
     @Override
     public Order removeOrder(LocalDate date, int orderId) throws FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return order1;
     }
 
     @Override
     public Order getOrder(LocalDate date, int orderId) throws FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return order1;
     }
 
 }
