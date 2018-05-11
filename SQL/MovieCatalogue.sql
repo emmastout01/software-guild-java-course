@@ -1,17 +1,7 @@
 
 CREATE DATABASE MovieCatalogue;
 
-
-CREATE TABLE Movie
-(
-	MovieID INT NOT NULL auto_increment,
-    Title VARCHAR(128) NOT NULL,
-    ReleaseDate DATE,
-    FOREIGN KEY (GenreID)  REFERENCES Genre(GenreID),
-    FOREIGN KEY (DirectorID) REFERENCES Director(DirectorID),
-    FOREIGN KEY (RatingID) REFERENCES Rating(RatingID),
-	PRIMARY KEY (MovieID)
-);
+use MovieCatalogue;
 
 CREATE TABLE Genre
 (
@@ -37,13 +27,6 @@ CREATE TABLE Rating
 );
 
 
-CREATE TABLE Rating
-(
-	RatingID INT NOT NULL auto_increment,
-    RatingName VARCHAR(5) NOT NULL,
-    PRIMARY KEY(RatingID)
-);
-
 CREATE TABLE Actor
 (
 	ActorID INT NOT NULL auto_increment,
@@ -53,45 +36,43 @@ CREATE TABLE Actor
     PRIMARY KEY(ActorID)
 );
 
+CREATE TABLE Movie
+(
+	MovieID INT NOT NULL auto_increment primary key,
+    Title VARCHAR(128) NOT NULL,
+    ReleaseDate DATE,
+    GenreID int not null,
+    RatingID int null,
+    DirectorID int null
+);
 
--- Actor 
--- ActorID - Primary Key, identity
--- FirstName - Required, extended character set, 30 length
--- LastName - Required, extended character set, 30 length
--- BirthDate - Not Required
+CREATE TABLE CastMembers
+(
+	CastMemberID INT NOT NULL auto_increment,
+	MovieID int not null,
+    ActorID int not null,
+    Role VARCHAR(30) NOT NULL,
+    PRIMARY KEY(CastMemberID)
+);
 
--- CastMembers 
--- CastMemberID - Primary Key, identity
--- ActorID - Foreign Key, Actor Table, Required
--- MovieID - Foreign Key, Movie Table, Required
--- Role - Required, extended character set, 50 length
+alter table CastMembers
+add constraint fk_Movie_MovieID
+foreign key(MovieID) references Movie(MovieID);
 
--- Genre 
--- GenreID - Primary Key, identity
--- GenreName - Required, extended character set, 30 length
--- Director 
--- DirectorID - Primary Key, identity
--- FirstName - Required, extended character set, 30 length
--- LastName - Required, extended character set, 30 length
--- BirthDate - Not Required
--- Rating 
--- RatingID - Primary Key, identity
--- RatingName - Required, standard character set, 5 length
+alter table CastMembers
+add constraint fk_Actor_ActorID
+foreign key(ActorID) references Actor(ActorID);
+
+ALTER TABLE Movie 
+ADD CONSTRAINT fk_Genre_GenreID
+FOREIGN KEY (GenreID) references Genre(GenreID);
 
 
--- MovieID - Primary Key, identity
--- GenreID - Foreign Key, Genre Table, Required
--- DirectorID - Foreign Key, Director Table, Not Required
--- RatingID - Foreign Key, Rating Table, Not Required
--- Title - Required, extended character set, 128 length
--- Release Date - Not Required
--- 
--- CREATE TABLE Apprentice 
--- (
---    ApprenticeID INT NOT NULL auto_increment,
---    FirstName VARCHAR(30) NOT NULL,
---    LastName VARCHAR(30) NOT NULL,
---    CohortID INT NOT NULL,
---    PRIMARY KEY(ApprenticeID),
---    FOREIGN KEY(CohortID) REFERENCES Cohort(CohortID)
--- );
+ALTER TABLE Movie 
+ADD CONSTRAINT fk_Director_DirectorID
+FOREIGN KEY (DirectorID) references Director(DirectorID);
+
+
+ALTER TABLE Movie 
+ADD CONSTRAINT fk_Rating_RatingID
+FOREIGN KEY (RatingID) references Rating(RatingID);
