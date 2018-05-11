@@ -81,3 +81,8 @@ ReservationId	integer primary key auto_increment not null,
 TaxRate decimal not null
 );
 
+create table BillingDetails (
+ReservationId	integer primary key auto_increment not null,
+TaxRate decimal not null
+);
+
