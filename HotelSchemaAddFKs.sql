@@ -31,9 +31,7 @@ foreign key (RoomInReservationId) references RoomInReservation(id);
 alter table AddOnForRoom
 add column RoomInReservationId integer, 
 add constraint fk_AddOnForRoom_RoomInReservationId
-foreign key (RoomInReservationId) references RoomInReservation(id);
-
-alter table AddOnForRoom
+foreign key (RoomInReservationId) references RoomInReservation(id),
 add column AddOnId integer,
 add constraint fk_AddOnForRoom_AddOnId
 foreign key (AddOnId) references AddOn(Id);
