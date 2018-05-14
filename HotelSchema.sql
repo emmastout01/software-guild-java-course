@@ -41,6 +41,7 @@ Id	integer primary key auto_increment not null
 
 create table PromotionCode (
 Id	integer primary key auto_increment not null,
+CodeName varChar(30) not null,
 StartDate date not null,
 EndDate date not null,
 PercentOff decimal(3, 1),

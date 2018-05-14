@@ -9,11 +9,11 @@ values ('Albert', 'Einstein', '651-200-0000', 'albert@einstein.com'),
 ('Monica', 'Geller', '621-205-0000', 'monica@geller.com');
 
 insert into PromotionCode
-(StartDate, EndDate, PercentOff, DollarsOff)
-values ('2017-03-08', '2019-12-31', 10, null),
-('2019-03-08', '2019-12-31', 5, null),
-('2012-03-08', '2017-12-31', null, 50),
-('2017-03-08', '2019-12-31', null, 100);
+(CodeName, StartDate, EndDate, PercentOff, DollarsOff)
+values ('Loyalty Program', '2017-03-08', '2019-12-31', 10, null),
+('Star Trek Convention', '2019-03-08', '2019-12-31', 5, null),
+('Wedding Block', '2012-03-08', '2017-12-31', null, 50),
+('Giveaway Coupon', '2017-03-08', '2019-12-31', null, 100);
 
 
 insert into Reservation
