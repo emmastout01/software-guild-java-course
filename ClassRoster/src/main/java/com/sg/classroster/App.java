@@ -11,6 +11,7 @@ import com.sg.classroster.dao.ClassRosterAuditDaoFileImpl;
 import com.sg.classroster.dao.ClassRosterDao;
 import com.sg.classroster.dao.ClassRosterPersistenceException;
 import com.sg.classroster.dao.ClassRosterDaoFileImpl;
+import com.sg.classroster.dao.JDBCDaoImpl;
 import com.sg.classroster.service.ClassRosterServiceLayer;
 import com.sg.classroster.service.ClassRosterServiceLayerImpl;
 import com.sg.classroster.ui.ClassRosterView;
@@ -27,9 +28,10 @@ public class App {
         UserIO myIo = new UserIOConsoleImpl();
         ClassRosterView myView = new ClassRosterView(myIo);
         ClassRosterDao myDao = new ClassRosterDaoFileImpl();
+        ClassRosterDao jdbcDao = new JDBCDaoImpl();
         ClassRosterAuditDao myAuditDao = new ClassRosterAuditDaoFileImpl();
             ClassRosterServiceLayer myService = 
-                    new ClassRosterServiceLayerImpl(myDao, myAuditDao);
+                    new ClassRosterServiceLayerImpl(jdbcDao, myAuditDao);
         ClassRosterController controller
                 = new ClassRosterController(myService, myView);
         controller.run();

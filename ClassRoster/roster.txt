@@ -1,2 +1,0 @@
-001::Hermione::Granger::Gryffindor
-002::Hannah::Abbot::Hufflepuff
