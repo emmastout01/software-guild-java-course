@@ -32,7 +32,7 @@ create table RoomPrice (
 Id	integer primary key auto_increment not null,
 CostStartDate date not null,
 CostEndDate date not null,
-Cost decimal
+Cost decimal(6, 2)
 );
 
 create table RoomInReservation (
@@ -43,8 +43,8 @@ create table PromotionCode (
 Id	integer primary key auto_increment not null,
 StartDate date not null,
 EndDate date not null,
-PercentOff decimal,
-DollarsOff decimal 
+PercentOff decimal(3, 1),
+DollarsOff decimal (5, 2)
 );
 
 create table Guest (
@@ -59,10 +59,11 @@ Id	integer primary key auto_increment not null,
 DatePurchased date not null
 );
 
+
 create table AddOn (
 Id	integer primary key auto_increment not null,
 Description varchar(50) not null,
-Cost decimal not null,
+Cost decimal(5, 2) not null,
 CostStartDate date not null,
 CostEndDate date not null
 );
@@ -79,7 +80,7 @@ Description varchar(20) not null
 
 create table BillingDetails (
 ReservationId	integer primary key auto_increment not null,
-TaxRate decimal not null
+TaxRate decimal(6, 2) not null
 );
 
 alter table Reservation 

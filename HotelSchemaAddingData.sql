@@ -29,3 +29,80 @@ values ('2018-05-01', '2018-05-04', 2, 3),
 ('2018-05-01', '2018-05-04', 3, 3),
 ('2018-04-01', '2018-04-04', 1, 4);
 
+insert into Amenity
+(Description)
+values ('Minifridge'),
+('Ocean view'),
+('Pool view'),
+('Jacuzzi');
+
+insert into Room 
+(RoomNumber, Floor, OccupancyLimit, Type)
+values (1, 1, 4, 'Double'),
+(2, 1, 6, 'Queen'),
+(3, 1, 4, 'Double'),
+(4, 1, 2, 'King');
+
+insert into RoomAmenity
+(RoomId, AmenityId)
+values (1, 2),
+(3, 1),
+(4, 2),
+(3, 3);
+
+insert into RoomInReservation
+(RoomId, ReservationId)
+values (4, 9),
+(3, 9),
+(2, 9),
+(4, 6),
+(2, 1),
+(4, 2),
+(3, 3),
+(2, 4), 
+(1, 5), 
+(1, 7),
+(2, 7),
+(2, 8),
+(1, 10);
+
+insert into Guest
+(FirstName, LastName, Age, RoomInReservationId)
+values ('Michael', 'Jackson', 50, 3),
+('JK', 'Rowling', 42, 7),
+('Linus', 'Pauling', 80, 2),
+('LL', 'Bean', 28, 4),
+('Cecily', 'Strong', 30, 9),
+('Captain', 'Hook', 48, 3);
+
+insert into RoomPrice
+(RoomId, CostStartDate, CostEndDate, Cost)
+values
+(1, '2017-08-01', '2019-07-31', 300.99);
+(1, '2019-08-01', '2021-07-31', 300.99),
+(2, '2017-08-01', '2019-07-31', 300.99),
+(2, '2019-08-01', '2021-07-31', 300.99),
+(3, '2017-08-01', '2019-07-31', 300.99),
+(3, '2019-08-01', '2021-07-31', 300.99),
+(4, '2017-08-01', '2019-07-31', 300.99),
+(4, '2019-08-01', '2021-07-31', 300.99);
+
+insert into AddOn
+(Description, Cost, CostStartDate, CostEndDate)
+values 
+('Movie', 19.99, '2017-08-01', '2019-07-31'),
+('Room Service', 12.99,  '2017-08-01', '2019-07-31'),
+('Massage', 69.99,  '2017-08-01', '2019-07-31');
+
+
+
+
+
+
+
+
+
+
+
+
+
