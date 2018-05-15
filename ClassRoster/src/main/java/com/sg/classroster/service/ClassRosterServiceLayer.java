@@ -26,6 +26,6 @@ public interface ClassRosterServiceLayer {
     Student getStudent(String studentId) throws
             ClassRosterPersistenceException;
  
-    Student removeStudent(String studentId) throws
+    boolean removeStudent(String studentId) throws
             ClassRosterPersistenceException;
 }

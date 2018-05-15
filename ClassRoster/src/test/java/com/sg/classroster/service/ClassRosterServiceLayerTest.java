@@ -127,13 +127,13 @@ public class ClassRosterServiceLayerTest {
     @Test
     public void testRemoveStudent() throws Exception {
          //Remove a student that exists and confirm you get something back
-        Student student = service.removeStudent("001");
-        assertNotNull(student);
+        boolean wasStudentRemoved = service.removeStudent("001");
+        assertEquals(true, wasStudentRemoved);
 
-        //Remove a student that doesn't exists and confirm 
+        //Remove a student that doesn't exist and confirm 
         //you don't get something back
-        student = service.removeStudent("999");
-        assertNull(student);
+        wasStudentRemoved = service.removeStudent("999");
+        assertEquals(false, wasStudentRemoved);
     }
 
 }

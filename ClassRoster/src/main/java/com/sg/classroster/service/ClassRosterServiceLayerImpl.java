@@ -69,11 +69,11 @@ public class ClassRosterServiceLayerImpl
     }
 
     @Override
-    public Student removeStudent(String studentId) throws ClassRosterPersistenceException {
-        Student removedStudent = dao.removeStudent(studentId);
+    public boolean removeStudent(String studentId) throws ClassRosterPersistenceException {
+        boolean wasStudentRemoved = dao.removeStudent(studentId);
         // Write to audit log
         auditDao.writeAuditEntry("Student " + studentId + " REMOVED.");
-        return removedStudent;
+        return wasStudentRemoved;
     }
 
     private void validateStudentData(Student student) throws

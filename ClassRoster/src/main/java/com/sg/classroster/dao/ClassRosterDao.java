@@ -58,6 +58,6 @@ public interface ClassRosterDao {
 	     * @return Student object that was removed or null if no student 
 	     * was associated with the given student id
 	     */
-    Student removeStudent(String studentId)
+    boolean removeStudent(String studentId)
             throws ClassRosterPersistenceException;
 }

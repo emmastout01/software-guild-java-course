@@ -87,7 +87,7 @@ public class JDBCDaoImpl implements ClassRosterDao {
     }
 
     @Override
-    public Student removeStudent(String studentId) throws ClassRosterPersistenceException {
+    public boolean removeStudent(String studentId) throws ClassRosterPersistenceException {
 
         try (Connection conn = MySQLDatabase.getDataSource().getConnection()) {
 
@@ -95,16 +95,11 @@ public class JDBCDaoImpl implements ClassRosterDao {
             PreparedStatement deleteStatement = conn.prepareStatement(sql);
             deleteStatement.setString(1, studentId);
 
-            ResultSet rs = deleteStatement.executeQuery();
-            if (deleteStatement.executeUpdate() > 0) {
-                return readStudent(rs);
-            }
+            return (deleteStatement.executeUpdate() > 0); 
 
         } catch (SQLException ex) {
             throw new ClassRosterPersistenceException("DB Failure.", ex);
         }
-        return null;
-
     }
 
     private Student readStudent(ResultSet rs) throws SQLException {

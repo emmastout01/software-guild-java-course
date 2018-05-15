@@ -54,11 +54,11 @@ public class ClassRosterDaoFileImpl implements ClassRosterDao {
     }
 
     @Override
-    public Student removeStudent(String studentId)
+    public boolean removeStudent(String studentId)
      throws ClassRosterPersistenceException{
         Student removedStudent = students.remove(studentId);
         writeRoster();
-        return removedStudent;
+        return true;
     }
 
     private void loadRoster() throws ClassRosterPersistenceException {

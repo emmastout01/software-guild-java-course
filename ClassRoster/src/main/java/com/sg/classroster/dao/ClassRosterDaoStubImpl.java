@@ -51,11 +51,11 @@ public class ClassRosterDaoStubImpl implements ClassRosterDao {
     }
 
     @Override
-    public Student removeStudent(String studentId) throws ClassRosterPersistenceException {
+    public boolean removeStudent(String studentId) throws ClassRosterPersistenceException {
         if (studentId.equals("001")) {
-            return onlyStudent;
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
