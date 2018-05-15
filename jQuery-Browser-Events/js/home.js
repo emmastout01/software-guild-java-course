@@ -11,6 +11,7 @@ function onReady() {
     displayMinneapolisWeather();
     displayAkronWeather();
     displayLouisvilleWeather();
+    toggleTableRowOnHover();
 }
 
 function displayMain() {
@@ -58,5 +59,13 @@ function toggleWeatherClick(cityName) {
         $(weatherDisplay).toggle();
         var message = $(weatherDisplay).is(':visible') ? 'Hide Weather' : 'Show Weather';
         $(weatherButton).text(message);
+    })
+}
+
+function toggleTableRowOnHover() {
+    $('tr').not(':first').hover(function() {
+        $(this).css('background-color', 'WhiteSmoke');
+    }, function() {
+        $(this).css('background-color', 'white');
     })
 }
