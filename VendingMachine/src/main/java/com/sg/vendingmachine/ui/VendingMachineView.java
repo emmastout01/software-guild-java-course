@@ -6,14 +6,15 @@
 package com.sg.vendingmachine.ui;
 
 import com.sg.vendingmachine.dto.Treat;
-import com.sg.vendingmachine.service.Change;
 import java.math.BigDecimal;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author emmastout
  */
+@Component
 public class VendingMachineView {
     private ConsoleIO io = new ConsoleIO();
     

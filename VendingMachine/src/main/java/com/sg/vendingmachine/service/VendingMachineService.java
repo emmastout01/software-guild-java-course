@@ -13,6 +13,7 @@ import java.util.List;
  *
  * @author emmastout
  */
+
 public interface VendingMachineService {
 
     public Change purchaseTreat(BigDecimal addedMoney, int myTreat)

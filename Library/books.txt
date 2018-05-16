@@ -1,0 +1,5 @@
+1,978-0765392367,Infomocracy,2017-08-08
+2,978-0765393388,Null States,2017-09-19
+3,978-0765379955,All the Birds in the Sky,2017-04-11
+4,978-0765382030,The Three-Body Problem,2016-01-12
+5,0756404746,Name of the Wind,2008-04-01

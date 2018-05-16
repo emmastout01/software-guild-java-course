@@ -11,16 +11,20 @@ import com.sg.vendingmachine.dto.Treat;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author emmastout
  */
+@Component
 public class VendingMachineServiceImpl implements VendingMachineService {
 
     VendingMachineDao dao;
     private BigDecimal moneyInMachine;
 
+    @Autowired
     public VendingMachineServiceImpl(VendingMachineDao dao) {
         this.dao = dao;
     }

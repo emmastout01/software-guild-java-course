@@ -15,17 +15,21 @@ import com.sg.vendingmachine.service.VendingMachineService;
 import com.sg.vendingmachine.ui.VendingMachineView;
 import java.math.BigDecimal;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author emmastout
  */
+@Component
 public class VendingMachineController {
 
     private VendingMachineView view;
     private VendingMachineDao dao;
     private VendingMachineService service;
 
+    @Autowired
     public VendingMachineController(VendingMachineView view,
             VendingMachineDao dao, VendingMachineService service) {
         this.view = view;

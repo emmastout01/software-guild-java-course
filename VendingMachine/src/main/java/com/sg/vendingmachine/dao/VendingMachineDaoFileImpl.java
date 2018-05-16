@@ -18,11 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author emmastout
  */
+@Component
 public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     public static final String INVENTORY_FILE = "inventory.txt";
