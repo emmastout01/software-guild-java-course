@@ -75,14 +75,9 @@
                                                                 '1': ' 1 penny ',
                                                                 'other': '{} pennies'}"></ng-pluralize>
                         </span>
-
-                        <!-- <span ng-show="c.change.quarters > 0">{{c.change.quarters}} quarters</span>
-                        <span ng-show="c.change.dimes > 0">{{c.change.dimes}} dimes</span>
-                        <span ng-show="c.change.quarters > 0">{{c.change.quarters}} quarters</span>
-                        <span ng-show="c.change.quarters > 0">{{c.change.quarters}} quarters</span> -->
                     </div>
                 </div>
-                <button id="returnChange">Change Return</button>
+                <button ng-click="c.returnChange()">Change Return</button>
             </div>
         </div>
     </div>
