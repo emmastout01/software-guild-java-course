@@ -1,3 +1,12 @@
+body {
+   
+    background-attachment: fixed;
+    background-position: right-top;
+    background-repeat: no-repeat;
+
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+}
+
 .header {
     text-align: center;
 }
@@ -7,9 +16,9 @@
     display: flex;
 }
 
-.treats {
-    background-color: peachpuff;
-}
+/* .treats {
+   
+} */
 
 #treat {
     background-color: blue;
@@ -23,8 +32,7 @@
 
 
 #changeIn, #messageToDisplay , #changeReturned{
-    height: 30px;
-    width: 150px;
+    min-height: 30px;
     background-color: white;
 }
 

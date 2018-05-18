@@ -15,8 +15,11 @@ myApp.service('service', function($http){
         return $http.get('http://localhost:8080/money/' + moneyIn + '/item/' + itemId).then(function(response) {
             return response;
         }).catch(function(err) {
-            alert('Could not purchase treat');
-            console.log(err);
+            if (err.status !=422) {
+                alert('Could not purchase treat');
+            } else {
+                return err;
+            }
         })
     }
 });
