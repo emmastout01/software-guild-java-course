@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
  *
  * @author emmastout
  */
-@Component
+//@Component
 public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     public static final String INVENTORY_FILE = "inventory.txt";

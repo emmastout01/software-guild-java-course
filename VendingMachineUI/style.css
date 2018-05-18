@@ -1,0 +1,38 @@
+.header {
+    text-align: center;
+}
+
+.main {
+    text-align: center;
+    display: flex;
+}
+
+.treats {
+    background-color: peachpuff;
+}
+
+#treat {
+    background-color: blue;
+    margin: 10px;
+    padding: 10px;
+}
+
+.userDisplay{
+    background-color: turquoise;
+}
+
+
+#changeIn, #messageToDisplay , #changeReturned{
+    height: 30px;
+    width: 150px;
+    background-color: white;
+}
+
+#itemSelected {
+    
+    display: inline-block;
+    height: 30px;
+    width: 150px;
+    background-color: white;
+}
+
