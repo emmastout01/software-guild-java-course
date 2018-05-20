@@ -41,6 +41,7 @@ myApp.controller('controller', function (service) {
                 nickels: response.data.nickels,
                 pennies: response.data.pennies
             }
+            vm.moneyUnfixed = 0; 
             vm.moneyInMachine = 0;
             vm.itemId = null;
             vm.getTreats();
