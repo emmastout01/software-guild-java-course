@@ -12,7 +12,6 @@ myApp.controller('controller', function (service) {
 
     vm.getTreats = function () {
         vm.service.getItems().then(function (response) {
-            console.log('got items: ', response.data);
             vm.items = response.data;
         })
     }
@@ -25,7 +24,6 @@ myApp.controller('controller', function (service) {
 
     vm.getItemId = function (itemId) {
         vm.itemId = itemId;
-        console.log(vm.itemId);
     }
 
     vm.purchaseItem = function (moneyIn, itemId) {
@@ -77,8 +75,8 @@ myApp.controller('controller', function (service) {
 
         vm.message = "";
         vm.itemId = null;
-        vm.moneyInMachine = 0;
         vm.moneyUnfixed = 0;
+        vm.moneyInMachine = 0;
     }
 
 
