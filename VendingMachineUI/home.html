@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="item in c.items">
                     <div ng-click="c.getItemId(item.id)" id="treat">
-                        {{item.id}}
+                        <p id="item-id">{{item.id}}</p>
                         <p>{{item.name}}</p>
                         <p>{{item.price | currency}}</p>
                         <p>Quantity Left: {{item.quantity}}</p>

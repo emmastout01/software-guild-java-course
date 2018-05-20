@@ -44,3 +44,8 @@ body {
     background-color: white;
 }
 
+#item-id {
+    margin-top: 0;
+    margin-left: 0;
+    text-align: left;
+}
