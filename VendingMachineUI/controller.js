@@ -28,10 +28,19 @@ myApp.controller('controller', function (service) {
 
     vm.purchaseItem = function (moneyIn, itemId) {
         vm.service.purchaseItem(moneyIn, itemId).then(function (response) {
-            if (response.data.message != null) {
+            if (response.data.message == "SOLD OUT!!!") {
                 vm.message = response.data.message;
-            } else {
+                vm.moneyUnfixed = 0;
+                vm.moneyInMachine = 0;
+                vm.itemId = null;
+            } else if (response.data.message != null) {
+                vm.message = response.data.message;
+            }
+            else {
                 vm.message = "Thank you!";
+                vm.moneyUnfixed = 0;
+                vm.moneyInMachine = 0;
+                vm.itemId = null;
             }
             vm.change = {
                 quarters: response.data.quarters,
@@ -39,9 +48,6 @@ myApp.controller('controller', function (service) {
                 nickels: response.data.nickels,
                 pennies: response.data.pennies
             }
-            vm.moneyUnfixed = 0; 
-            vm.moneyInMachine = 0;
-            vm.itemId = null;
             vm.getTreats();
         })
     }
