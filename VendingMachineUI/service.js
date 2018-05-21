@@ -3,7 +3,7 @@ myApp.service('service', function($http){
 
      //GET items route
      self.getItems = function () {
-        return $http.get('http://localhost:8080/items').then(function (response) {
+        return $http.get(.).then(function (response) {
             return response;
         }).catch(function(err) {
             alert('Could not get items');

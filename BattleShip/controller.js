@@ -12,8 +12,8 @@ myApp.controller('controller', function (service) {
         })
     }
 
-    vm.getBoard();
-    
+    // vm.getBoard();
+
     vm.makeGuess = function(point) {
         console.log(point);
     }
