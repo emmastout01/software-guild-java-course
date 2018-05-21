@@ -1,0 +1,12 @@
+* {
+    text-align: center;
+}
+
+.container {
+    background-image: "https://i.ytimg.com/vi/21Cg61G6k7w/maxresdefault.jpg";
+}
+
+.header {
+    margin: 20px;
+    padding: 20px;
+}

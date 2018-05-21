@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BattleShip!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="controller as c" class="container">
+        <div class="header">
+            <h1>BattleShip</h1>
+        </div>
+
+        <h2>{{c.message}}</h2>
+        <div class="gameBoard">
+            <div class="row justify-content-center" ng-repeat="row in c.gameBoard">
+                <span ng-repeat="point in row">
+                    <Button ng-click="c.makeGuess(point)">{{point}}</Button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendors/angular.min.js"></script>
+    <script src="controller.js"></script>
+    <script src="service.js"></script>
+</body>
+
+</html>
