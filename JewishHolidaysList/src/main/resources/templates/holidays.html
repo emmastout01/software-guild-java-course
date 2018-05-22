@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Jewish Holidays</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+               <h1>Jewish Holidays</h1>
+        
+        <h2>Jewish Holidays, 2018/2019</h2>
+        <div th:each="h: ${holidays}">
+            Holiday: <div th:text="${h.holidayName}">Rosh HaShanah</div>
+            Begins: <div th:text="${h.startDate}">September 9th</div>
+            Ends: <div th:text="${h.endDate}">September 11th</div>
+            Description: <div th:text="${h.description}">Jewish New Year</div>
+        </div>
+
+        <h3>Add a Holiday</h3>
+        <form method="POST" action="/addHoliday">
+           Holiday Name: <input type="text" name="holidayName">
+           Begins: <input type="text" name="startDate">
+           Ends: <input type="text" name="endDate">
+           Description: <input type="text" name="description">
+           <button type="submit">Add Holiday</button>
+        </form>
+    </body>
+</html>
