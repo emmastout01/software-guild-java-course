@@ -20,11 +20,13 @@
         <h2>{{c.message}}</h2>
         <div class="gameBoard">
             <div class="row justify-content-center" ng-repeat="row in c.gameBoard">
-                <span ng-repeat="point in row">
-                    <Button ng-click="c.makeGuess(point)">{{point}}</Button>
+                <span ng-repeat="point in row track by $index">
+                    <Button ng-click="c.makeGuess(point)">*</Button>
                 </span>
             </div>
         </div>
+
+        <button class="btn" ng-click="c.newGame()">New Game</button>
     </div>
 
     <script src="vendors/angular.min.js"></script>
