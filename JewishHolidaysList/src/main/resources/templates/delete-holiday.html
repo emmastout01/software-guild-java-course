@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title th:text="'Delete ' + ${holiday.holidayName}">Delete Holiday</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h3 class='danger' th:text="'Are you sure you want to delete ' + 
+                ${holiday.holidayName} + '? This action cannot be undone.'">Confirm delete</h3>
+            <form method="POST">
+                <input type="hidden" name="id" th:value="${holiday.id}">  
+
+                <button class="btn btn-primary" type="submit">Delete Holiday</button>
+                <a href="/" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </body>
+</html>

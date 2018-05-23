@@ -9,38 +9,35 @@ and open the template in the editor.
         <title>Jewish Holidays</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     </head>
     <body>
-               <h1>Jewish Holidays</h1>
-        
-        <h2>Jewish Holidays, 2018/2019</h2>
-        <div th:each="h: ${holidays}">
-            <div>
-                <strong> Holiday: </strong><span th:text="${h.holidayName}">Rosh HaShanah</span>
-            </div>
-            <div>
-               <strong>Begins: </strong> <span th:text="${h.startDate}">September 9th</span> 
-            </div>
-            
-            <div>
-                <strong> Ends: </strong> <span th:text="${h.endDate}">September 11th</span> 
-            </div>
-           
-            <div>
-               <strong>Description: </strong> <span th:text="${h.description}">Jewish New Year</span> 
-            </div>
-            
-            <br>
-        </div>
-        
+        <div class="container">
 
-        <h3>Add a Holiday</h3>
-        <form method="POST" action="/addHoliday">
-           Holiday Name: <input type="text" name="holidayName">
-           Begins: <input type="text" name="startDate">
-           Ends: <input type="text" name="endDate">
-           Description: <input type="text" name="description">
-           <button type="submit">Add Holiday</button>
-        </form>
+            <h2>Jewish Holidays, 2018/2019</h2>
+            <div th:each="h: ${holidays.values()}">
+                <div>
+                    <strong> Holiday: </strong><span th:text="${h.holidayName}">Rosh HaShanah</span>
+                </div>
+                <div>
+                    <strong>Begins: </strong> <span th:text="${h.startDate}">September 9th</span> 
+                </div>
+
+                <div>
+                    <strong> Ends: </strong> <span th:text="${h.endDate}">September 11th</span> 
+                </div>
+
+                <div>
+                    <strong>Description: </strong> <span th:text="${h.description}">Jewish New Year</span> 
+                </div>
+                <a th:href="@{/editHoliday/{holidayId}(holidayId=${h.id})}" href="#" class="btn btn-secondary">Edit</a>
+                <a th:href="@{/deleteHoliday/{holidayId}(holidayId=${h.id})}" href="#" class="btn btn-danger">Delete</a>
+                <br>
+                <br>
+            </div>
+
+            <a href="/addHoliday" class="btn btn-primary" >Add a Holiday</a>
+        </div>
+
     </body>
 </html>

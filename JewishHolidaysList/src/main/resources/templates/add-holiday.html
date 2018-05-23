@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Jewish Holidays</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="container">
+        <h3>Add a Holiday</h3>
+        <form method="POST" action="/addHoliday">
+            Holiday Name: <input type="text" name="holidayName"> 
+            <span class="text-danger" th:if="${#fields.hasErrors('holiday.holidayName')}"
+                  th:errors="*{holiday.holidayName}">Holiday name error</span> <br>
+            Begins: <input type="text" name="startDate"> 
+            <span class="text-danger" th:if="${#fields.hasErrors('holiday.startDate')}"
+                  th:errors="*{holiday.startDate}">Holiday start date error</span> <br>
+            Ends: <input type="text" name="endDate"> <br>
+            Description: <input type="text" name="description"> 
+            <span class="text-danger" th:if="${#fields.hasErrors('holiday.description')}"
+                  th:errors="*{holiday.description}">Holiday description error</span> <br>
+            <button class="btn btn-primary" type="submit">Add Holiday</button>
+            <a href="/" class="btn btn-secondary">Cancel</a>
+        </form>
+        </div>
+    </body>
+</html>

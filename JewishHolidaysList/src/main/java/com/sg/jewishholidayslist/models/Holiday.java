@@ -5,23 +5,43 @@
  */
 package com.sg.jewishholidayslist.models;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author emmastout
  */
 public class Holiday {
+    
+    private int id;
+    @NotNull
+    @Size(min=1, message="Holiday name is required.")
     private String holidayName;
+    
+    @NotNull
+    @Size(min=1, message="Holiday start date is required.")
     private String startDate;
     private String endDate;
+    
+    @NotNull
+    @Size(max=100, message="Description maximum is 100 characters.")
     private String description;
 
-    public Holiday(String holidayName, String startDate, String endDate, String description) {
-        this.holidayName = holidayName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.description = description;
+//    public Holiday(String holidayName, String startDate, String endDate, String description) {
+//        this.holidayName = holidayName;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.description = description;
+//    }
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getHolidayName() {
