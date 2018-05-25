@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Powerball -- Draw a Winner</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Let's Draw a Winner!</h1>
+            <h3>Here's our Powerball numbers!</h3>
+            <span th:text="${powerball.numberOne} + '  '">
+                Number One
+            </span>
+            <span th:text="${powerball.numberTwo} + '  '">
+                Number Two
+            </span>
+            <span th:text="${powerball.numberThree} + '  '">
+                Number Three
+            </span>
+            <span th:text="${powerball.numberFour} + '  '">
+                Number Four
+            </span>
+            <span th:text="${powerball.numberFive} + '  '">
+                Number Five
+            </span>
+            <span>
+                And the Powerball: 
+            </span>
+            <span th:text="'  ' + ${powerball.powerball}">
+                Powerball
+            </span>
+            
+            <br>
+            <h3>And here's our winning ticket!</h3>
+            
+            <a class="btn btn-secondary" href="/">Return home</a>
+            
+        </div>
+    </body>
+</html>
