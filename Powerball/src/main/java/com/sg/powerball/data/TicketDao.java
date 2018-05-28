@@ -19,9 +19,9 @@ public interface TicketDao {
       
       List<Ticket> searchByCriteria(SearchCriteria criteria);
       
-      boolean updateTicketStatus(Ticket ticket);
+      boolean updateTicketStatus();
       
       Powerball drawPowerball(Powerball powerball);
 
-    public Ticket getWinner(Powerball powerball);
+    public List<Ticket> getWinner(Powerball powerball);
 }

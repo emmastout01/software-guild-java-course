@@ -37,12 +37,30 @@ and open the template in the editor.
             <span th:text="'  ' + ${powerball.powerball}">
                 Powerball
             </span>
-            
+
             <br>
-            <h3>And here's our winning ticket!</h3>
+            <h3 th:if="${winners == null}">
+                Nuts! No winners this time!</h3>
+            <h3 th:if="${winners != null}">
+                And here's our winning ticket(s)!</h3>
             
+            <table>
+                <th:block th:each="winner : ${winners}">
+                    <tr>
+                        <td th:text="${winner.firstName}">Nobody won!</td>
+                        <td th:text="${winner.lastName}"></td>
+                        <td th:text="${winner.numberOne}"></td>
+                        <td th:text="${winner.numberTwo}"></td>
+                        <td th:text="${winner.numberThree}"></td>
+                        <td th:text="${winner.numberFour}"></td>
+                        <td th:text="${winner.numberFive}"></td>
+                        <td th:text="${winner.powerballNumber}"></td>
+                    </tr>
+                </th:block>
+            </table>
+
             <a class="btn btn-secondary" href="/">Return home</a>
-            
+
         </div>
     </body>
 </html>

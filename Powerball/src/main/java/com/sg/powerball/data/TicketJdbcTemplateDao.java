@@ -27,6 +27,13 @@ public class TicketJdbcTemplateDao implements TicketDao {
     @Autowired
     private JdbcTemplate jt;
 
+    List<Ticket> matching1 = new ArrayList<>();
+    List<Ticket> matching2 = new ArrayList<>();
+    List<Ticket> matching3 = new ArrayList<>();
+    List<Ticket> matching4 = new ArrayList<>();
+    List<Ticket> matching5 = new ArrayList<>();
+    List<Ticket> matching6 = new ArrayList<>();
+
     @Override
     public Ticket addTicket(Ticket ticket) {
 
@@ -54,13 +61,13 @@ public class TicketJdbcTemplateDao implements TicketDao {
     }
 
     @Override
-    public boolean updateTicketStatus(Ticket ticket) {
+    public boolean updateTicketStatus() {
         //This method needs some work. I want to change the status of all tickets
         //purchased before the powerball was drawn, not update a specific ticket. 
-        String sql = "UPDATE Ticket SET Status = ?"
-                + "WHERE TicketId = ?;";
+        String sql = "UPDATE Ticket SET TicketStatus = ?"
+                + "WHERE TicketStatus = ?;";
 
-        return jt.update(sql, "expired", ticket.getId()) > 0;
+        return jt.update(sql, "expired", "active") > 0;
     }
 
     @Override
@@ -92,7 +99,7 @@ public class TicketJdbcTemplateDao implements TicketDao {
     }
 
     @Override
-    public Ticket getWinner(Powerball powerball) {
+    public List<Ticket> getWinner(Powerball powerball) {
         //Here, I need to get all the tickets that have any matches with 
         //Put all active tickets into a set, loop through the set and if any numbers match the powerball, th
         List<Ticket> activeTickets = this.getAllActiveTickets();
@@ -111,35 +118,106 @@ public class TicketJdbcTemplateDao implements TicketDao {
             ticketNumbers.add(ticket.getNumberThree());
             ticketNumbers.add(ticket.getNumberFour());
             ticketNumbers.add(ticket.getNumberFive());
-            int matchingNumbers = 
-                    this.getMatchingNumbers(ticketNumbers, powerballNumbers);
+
+            int matchingNumbers
+                    = this.getMatchingNumbers(ticketNumbers, powerballNumbers);
+            if (ticket.getPowerballNumber() == powerball.getPowerball()) {
+                matchingNumbers++;
+            }
+
+            this.addToWinnerArray(matchingNumbers, ticket);
         }
 
+        List<Ticket> winnerArray = this.getWinnerArray();
+
+        return winnerArray;
     }
 
-    private int getMatchingNumbers
-        (List<Integer> ticketNumbers, List<Integer> powerballNumbers) {
-            int matchingNumbers = 0;
-             for (int number : ticketNumbers) {
-                for (int pnumber : powerballNumbers) {
-                    if (number == pnumber) {
-                        matchingNumbers++;
-                    }
+    private void addToWinnerArray(int matchingNumbers, Ticket ticket) {
+
+        switch (matchingNumbers) {
+            case 1:
+                matching1.add(ticket);
+                break;
+            case 2:
+                matching2.add(ticket);
+                break;
+            case 3:
+                matching3.add(ticket);
+                break;
+            case 4:
+                matching4.add(ticket);
+                break;
+            case 5:
+                matching5.add(ticket);
+                break;
+            case 6:
+                matching6.add(ticket);
+                break;
+        }
+    }
+
+    private List<Ticket> getWinnerArray() {
+        List<Ticket> winners;
+        if (matching6.toArray().length > 0) {
+            winners = matching6;
+            this.emptyArrays();
+            return winners;
+        } else if (matching5.toArray().length > 0) {
+            winners = matching5;
+            this.emptyArrays();
+            return winners;
+        } else if (matching4.toArray().length > 0) {
+            winners = matching4;
+            this.emptyArrays();
+            return winners;
+        } else if (matching3.toArray().length > 0) {
+            winners = matching3;
+            this.emptyArrays();
+            return winners;
+        } else if (matching2.toArray().length > 0) {
+            winners = matching2;
+            this.emptyArrays();
+            return winners;
+        } else if (matching1.toArray().length > 0) {
+            winners = matching1;
+            this.emptyArrays();
+            return winners;
+        } else {
+            return null;
+        }
+    }
+
+    private int getMatchingNumbers(List<Integer> ticketNumbers, List<Integer> powerballNumbers) {
+        int matchingNumbers = 0;
+        for (int number : ticketNumbers) {
+            for (int pnumber : powerballNumbers) {
+                if (number == pnumber) {
+                    matchingNumbers++;
                 }
             }
-             return matchingNumbers;
         }
-    
-    
+        return matchingNumbers;
+    }
+
     private List<Ticket> getAllActiveTickets() {
         try {
             return jt.query(
-                    "SELECT * FROM Book WHERE TicketStatus = ?",
+                    "SELECT * FROM Ticket WHERE TicketStatus = ?",
                     new TicketMapper(),
                     "active");
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
+    }
+
+    private void emptyArrays() {
+        this.matching1.clear();
+        this.matching2.clear();
+        this.matching3.clear();
+        this.matching4.clear();
+        this.matching5.clear();
+        this.matching6.clear();
     }
 
     private static final class TicketMapper implements RowMapper<Ticket> {

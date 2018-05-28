@@ -8,6 +8,7 @@ package com.sg.powerball.services;
 import com.sg.powerball.data.TicketDao;
 import com.sg.powerball.models.Powerball;
 import com.sg.powerball.models.Ticket;
+import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -145,7 +146,9 @@ public class TicketService {
         return ticketDao.drawPowerball(powerball);
     }
     
-    public Ticket getWinner(Powerball powerball) {
-        return ticketDao.getWinner(powerball);
+    public List<Ticket> getWinner(Powerball powerball) {
+        List<Ticket> winners = ticketDao.getWinner(powerball);
+        ticketDao.updateTicketStatus();
+        return winners;
     }
 }

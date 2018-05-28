@@ -8,6 +8,8 @@ package com.sg.powerball.controllers;
 import com.sg.powerball.models.Powerball;
 import com.sg.powerball.models.Ticket;
 import com.sg.powerball.services.TicketService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,7 @@ public class PowerballController {
 
     @Autowired
     private TicketService ticketService;
-    
+
     @GetMapping
     public String getHomePage() {
         return "home";
@@ -44,34 +46,34 @@ public class PowerballController {
             System.out.println("Error with ticket: " + ticket);
             return "buyTicket";
         } else {
-             ticketService.addTicket(ticket);
+            ticketService.addTicket(ticket);
             return "redirect:/";
         }
     }
 
     @GetMapping("/buyQuickPick")
     public String buyQuickPick(Model model) {
-            model.addAttribute("ticket", new Ticket());
-            return "buyQuickPick";
+        model.addAttribute("ticket", new Ticket());
+        return "buyQuickPick";
     }
-    
+
     @PostMapping("/buyQuickPick")
     public String buyQuickPick(@Valid Ticket ticket, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("ticket", ticket);
             return "buyQuickPick";
         } else {
-             ticketService.addTicketGenerateNumbers(ticket);
+            ticketService.addTicketGenerateNumbers(ticket);
             return "redirect:/";
         }
     }
-
 
     @GetMapping("/drawPowerball")
     public String drawPowerball(Model model) {
         Powerball newPowerball = ticketService.drawPowerball();
         model.addAttribute("powerball", newPowerball);
-        model.addAttribute("winner", ticketService.getWinner(newPowerball));
+        model.addAttribute("winners", ticketService.getWinner(newPowerball));
+
         return "drawPowerball";
     }
 
