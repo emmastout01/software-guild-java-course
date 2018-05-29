@@ -17,6 +17,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -36,6 +37,7 @@ public class TicketJdbcTemplateDao implements TicketDao {
     List<Ticket> matching6 = new ArrayList<>();
 
     @Override
+    @Transactional
     public Ticket addTicket(Ticket ticket) {
 
         String sql = "INSERT INTO Ticket (FirstName, LastName, Email, State, "
@@ -185,7 +187,7 @@ public class TicketJdbcTemplateDao implements TicketDao {
     private List<Ticket> getWinnerArray() {
         List<Ticket> winners;
         if (matching6.toArray().length > 0) {
-            winners = matching6;
+            winners = new ArrayList<>(matching6);
             this.emptyArrays();
             return winners;
         } else if (matching5.toArray().length > 0) {
