@@ -5,6 +5,7 @@
  */
 package com.sg.powerball.data;
 
+import com.sg.powerball.models.SearchCriteria;
 import com.sg.powerball.models.Powerball;
 import com.sg.powerball.models.Ticket;
 import java.sql.ResultSet;
@@ -41,6 +42,7 @@ public class TicketJdbcTemplateDao implements TicketDao {
                 + "NumberOne, NumberTwo, NumberThree, NumberFour, NumberFive, "
                 + "PowerballNumber ) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        
         jt.update(sql,
                 ticket.getFirstName(),
                 ticket.getLastName(),
@@ -54,10 +56,18 @@ public class TicketJdbcTemplateDao implements TicketDao {
                 ticket.getPowerballNumber()
         );
 
-        int id = jt.queryForObject("select LAST_INSERT_ID()", Integer.class);
+        int id = jt.queryForObject("select LAST_INSERT_ID();", Integer.class);
 
         ticket.setId(id);
         return ticket;
+    }
+
+    @Override
+    public boolean addTicketManualEntry(Ticket ticket) {        
+        String sql = "UPDATE Ticket SET PickType = ?"
+                + "WHERE TicketId = ?;";
+
+        return jt.update(sql, "Manual", ticket.getId()) > 0;
     }
 
     @Override
@@ -72,14 +82,29 @@ public class TicketJdbcTemplateDao implements TicketDao {
 
     @Override
     public List<Ticket> searchByCriteria(SearchCriteria criteria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        String sql = "SELECT * FROM Ticket WHERE"
-//                + "? IS NULL or FirstName LIKE ? "
-//                + "AND (? IS NULL or LastName LIKE ?)"
-//                + "AND ? IS NULL or State LIKE ?"
-//                + "AND ? IS NULL or LastName LIKE ?"
-//                + "AND ? IS NULL or LastName LIKE ?"
-//                
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM Ticket WHERE"
+                + "(? IS NULL or TicketId LIKE ?)"
+                + "AND (? IS NULL or FirstName LIKE ?) "
+                + "AND (? IS NULL or LastName LIKE ?)"
+                + "AND (? IS NULL or Email LIKE ?)"
+                + "AND (? IS NULL or State LIKE ?)"
+                + "AND (? IS NULL or TicketStatus LIKE ?)"
+                + "AND (? IS NULL or PickType LIKE ?);";
+
+        String lastName = criteria.getLastName();
+        
+        return jt.query(sql,
+                new TicketMapper(),
+                criteria.getId(), criteria.getId(),
+                criteria.getFirstName(), criteria.getFirstName(),
+                criteria.getLastName(), criteria.getLastName(),
+                criteria.getEmail(), criteria.getEmail(),
+                criteria.getState(), criteria.getState(),
+                criteria.getStatus(), criteria.getStatus(),
+                criteria.getPickType(), criteria.getPickType()
+        );
+
     }
 
     public Powerball drawPowerball(Powerball powerball) {

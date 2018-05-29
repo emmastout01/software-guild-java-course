@@ -7,8 +7,8 @@ package com.sg.powerball.controllers;
 
 import com.sg.powerball.models.Powerball;
 import com.sg.powerball.models.Ticket;
+import com.sg.powerball.models.SearchCriteria;
 import com.sg.powerball.services.TicketService;
-import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,4 +77,23 @@ public class PowerballController {
         return "drawPowerball";
     }
 
-}
+    @GetMapping("/searchPicks")
+    public String searchPicks(Model model) {
+        SearchCriteria criteria = new SearchCriteria();
+        model.addAttribute("criteria", criteria);
+        return "searchPicks";
+    }
+
+    @PostMapping("/searchPicks")
+    public String searchPicks(@Valid SearchCriteria criteria, BindingResult result, Model model) {
+//        if (result.hasErrors()) {
+//            model.addAttribute("criteria", criteria);
+//            return "searchPicks";
+//        } else {
+            List<Ticket> results = ticketService.searchByCriteria(criteria);
+            model.addAttribute("results", results);
+            return "redirect:/searchPicks";
+        }
+
+    }
+//}

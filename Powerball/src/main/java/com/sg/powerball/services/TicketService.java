@@ -7,6 +7,7 @@ package com.sg.powerball.services;
 
 import com.sg.powerball.data.TicketDao;
 import com.sg.powerball.models.Powerball;
+import com.sg.powerball.models.SearchCriteria;
 import com.sg.powerball.models.Ticket;
 import java.util.List;
 import java.util.Random;
@@ -27,7 +28,9 @@ public class TicketService {
     public Ticket addTicket(Ticket ticket) {
         
         if (isTicketValid(ticket)) {
-            return ticketDao.addTicket(ticket);
+            Ticket myTicket = ticketDao.addTicket(ticket);
+            ticketDao.addTicketManualEntry(myTicket);
+            return myTicket;
         } else {
             return null;
         }
@@ -150,5 +153,12 @@ public class TicketService {
         List<Ticket> winners = ticketDao.getWinner(powerball);
         ticketDao.updateTicketStatus();
         return winners;
+    }
+    
+    public List<Ticket> searchByCriteria(SearchCriteria criteria) {
+        //Here: call the search function in the dao
+       System.out.println("Search results: " + ticketDao.searchByCriteria(criteria));
+       return ticketDao.searchByCriteria(criteria);
+       
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.sg.powerball.data;
 
+import com.sg.powerball.models.SearchCriteria;
 import com.sg.powerball.models.Powerball;
 import com.sg.powerball.models.Ticket;
 import java.util.List;
@@ -23,5 +24,7 @@ public interface TicketDao {
       
       Powerball drawPowerball(Powerball powerball);
 
-    public List<Ticket> getWinner(Powerball powerball);
+    List<Ticket> getWinner(Powerball powerball);
+    
+    boolean addTicketManualEntry(Ticket ticket);
 }
