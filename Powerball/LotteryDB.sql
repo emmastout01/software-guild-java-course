@@ -45,11 +45,15 @@ SELECT LAST_INSERT_ID();
 
 SELECT * FROM Ticket;
 
+SET SQL_SAFE_UPDATES = 0;
+UPDATE Ticket SET TicketStatus = "active";
+SET SQL_SAFE_UPDATES = 1;
+
 SELECT * FROM Ticket WHERE
-                ("" IS NULL or TicketId LIKE "")
-                AND ("" ISNULL() or FirstName LIKE "Emma")
-                AND ("" ISNULL() or LastName LIKE "")
-                AND ("" ISNULL() or Email LIKE "")
-                AND ("" ISNULL() or State LIKE "")
-                AND ("" ISNULL() or TicketStatus LIKE "")
-                AND ("" ISNULL() or PickType LIKE "");
+                ("" = "" or TicketId LIKE "")
+                AND ("" = "Emma" or FirstName LIKE "Emma")
+                AND ("" = "" or LastName LIKE "")
+                AND ("" = "" or Email LIKE "")
+                AND ("" = "" or State LIKE "")
+                AND ("" = "" or TicketStatus LIKE "")
+                AND ("" = "" or PickType LIKE "");
