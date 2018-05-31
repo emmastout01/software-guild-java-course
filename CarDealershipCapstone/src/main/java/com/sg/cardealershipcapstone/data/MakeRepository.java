@@ -5,10 +5,15 @@
  */
 package com.sg.cardealershipcapstone.data;
 
+import com.sg.cardealershipcapstone.models.Make;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author emmastout
  */
-public class MakeRepository {
+@Repository
+public interface MakeRepository extends JpaRepository<Make, Integer> {
     
 }

@@ -5,10 +5,18 @@
  */
 package com.sg.cardealershipcapstone.services;
 
+import com.sg.cardealershipcapstone.data.SpecialRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author emmastout
  */
+@Service
 public class SpecialService {
     
+    
+    @Autowired
+    SpecialRepository repo;
 }

@@ -5,10 +5,15 @@
  */
 package com.sg.cardealershipcapstone.data;
 
+import com.sg.cardealershipcapstone.models.Special;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author emmastout
  */
-public class SpecialRepository {
+@Repository
+public interface SpecialRepository extends JpaRepository<Special, Integer> {
     
 }

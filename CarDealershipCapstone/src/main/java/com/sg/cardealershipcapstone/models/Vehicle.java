@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.Data;
 
 /**
@@ -24,8 +26,15 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int vehicleId;
     private String vin;
-    private String make;
-    private String model;
+    
+    @ManyToOne
+    @JoinColumn(name = "MakeId")
+    private Make make;
+    
+    @ManyToOne
+    @JoinColumn(name = "ModelId")
+    private Model model;
+    
     private String color;
     private String type;
     private String bodyStyle;

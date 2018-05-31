@@ -5,10 +5,17 @@
  */
 package com.sg.cardealershipcapstone.controllers;
 
+import com.sg.cardealershipcapstone.services.SpecialService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 /**
  *
  * @author emmastout
  */
+@Controller
 public class SpecialController {
     
+    @Autowired
+    private SpecialService service;
 }

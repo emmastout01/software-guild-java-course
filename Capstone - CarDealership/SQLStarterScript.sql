@@ -41,6 +41,7 @@ CREATE TABLE `Special` (
 CREATE TABLE `Model` (
 	`ModelId` INT NOT NULL AUTO_INCREMENT,
 	`MakeId` INT NOT NULL,
+    `Model` VARCHAR(40),
 	PRIMARY KEY (`ModelId`)
 );
 

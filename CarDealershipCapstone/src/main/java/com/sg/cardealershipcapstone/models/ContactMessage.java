@@ -22,5 +22,10 @@ public class ContactMessage {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int messageId;
+    private String name;
+    private String email;
+    private String phone;
+    private String message;
     
 }

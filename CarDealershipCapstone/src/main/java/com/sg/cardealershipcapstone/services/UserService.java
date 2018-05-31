@@ -5,10 +5,17 @@
  */
 package com.sg.cardealershipcapstone.services;
 
+import com.sg.cardealershipcapstone.data.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author emmastout
  */
+@Service
 public class UserService {
     
+    @Autowired
+    UserRepository repo;
 }

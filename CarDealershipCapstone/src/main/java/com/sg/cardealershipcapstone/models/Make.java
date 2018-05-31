@@ -22,4 +22,6 @@ public class Make {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int makeId;
+    private String make;
 }

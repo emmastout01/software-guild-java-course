@@ -5,10 +5,17 @@
  */
 package com.sg.cardealershipcapstone.services;
 
+import com.sg.cardealershipcapstone.data.ContactMessageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author emmastout
  */
+@Service
 public class ContactMessageService {
     
+    @Autowired
+    ContactMessageRepository repo;
 }
