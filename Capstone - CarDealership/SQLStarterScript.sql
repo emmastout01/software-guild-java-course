@@ -22,6 +22,7 @@
 	`Description` varchar(300) NOT NULL,
 	`Photo` varchar(100) NOT NULL,
 	`Featured` BOOLEAN NOT NULL,
+    `Sold` BOOLEAN NOT NULL,
 	PRIMARY KEY (`VehicleId`)
 );
 
@@ -47,7 +48,7 @@ CREATE TABLE `Model` (
 
 CREATE TABLE `ContactMessage` (
 	`MessageId` INT NOT NULL AUTO_INCREMENT,
-	`Name` varchar(30) NOT NULL,
+	`Name` varchar(50) NOT NULL,
 	`Email` varchar(100),
 	`Phone` varchar(20),
 	`Message` varchar(500) NOT NULL,
@@ -56,8 +57,8 @@ CREATE TABLE `ContactMessage` (
 
 CREATE TABLE `User` (
 	`UserId` INT NOT NULL AUTO_INCREMENT,
-	`FirstName` varchar(20) NOT NULL,
-	`LastName` varchar(20) NOT NULL,
+	`FirstName` varchar(40) NOT NULL,
+	`LastName` varchar(40) NOT NULL,
 	`Email` varchar(100) NOT NULL,
 	`Password` varchar(100) NOT NULL,
 	`Role` varchar(20) NOT NULL,
@@ -66,11 +67,11 @@ CREATE TABLE `User` (
 
 CREATE TABLE `Purchase` (
 	`PurchaseId` INT NOT NULL AUTO_INCREMENT,
-	`Name` varchar(30) NOT NULL,
+	`Name` varchar(50) NOT NULL,
 	`Phone` varchar(20),
 	`Email` varchar(100),
-	`Street1` varchar(50) NOT NULL,
-	`Street2` varchar(50),
+	`Street1` varchar(100) NOT NULL,
+	`Street2` varchar(100),
 	`State` varchar(5) NOT NULL,
 	`City` varchar(20) NOT NULL,
 	`ZipCode` varchar(20) NOT NULL,
@@ -82,7 +83,12 @@ CREATE TABLE `Purchase` (
 	PRIMARY KEY (`PurchaseId`)
 );
 
+-- ALTER TABLE Purchase
+-- ALTER PurchaseDate SET DEFAULT GETDATE();
 
+
+--  ALTER TABLE `Purchase` MODIFY COLUMN PURCHASEDATE DATE NOT NULL DEFAULT DATE;
+ 
 ALTER TABLE `Vehicle` ADD FOREIGN KEY fk_Vehicle_Make(MakeId) REFERENCES Make(MakeId);
 
 ALTER TABLE `Vehicle` ADD  FOREIGN KEY fk_Vehicle_Model(ModelId) REFERENCES Model(ModelId);

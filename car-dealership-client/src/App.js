@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 // Page components
-import Home from './pages/AllUsers/Home';
+import Home from './pages/AllUsers/Home/Home';
 import NewInventory from './pages/AllUsers/NewInventory';
 import UsedInventory from './pages/AllUsers/UsedInventory';
 import Specials from './pages/AllUsers/Specials';
 import Contact from './pages/AllUsers/Contact';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      specials: []
+    }
+  }
 
   componentDidMount() {
-    this.getFeaturedVehicles();
+    this.getSpecials();
   }
 
-  getFeaturedVehicles() {
-    axios.get('localhost:8080/vehicle/featured')
-    
+  getSpecials() {
+    axios.get('http://localhost:8080/special/all')
+    .then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
+    })
   }
-
 
   render() {
     return (
@@ -49,7 +59,7 @@ class App extends Component {
             <hr />
 
             <Switch>
-              <Route exact path='/' component={Home} />
+              <Route exact path='/' component={Home} specials={this.state.specials}/>
               <Route path='/inventory/new' component={NewInventory} />
               <Route path='/inventory/used' component={UsedInventory} />
               <Route path='/specials' component={Specials} />

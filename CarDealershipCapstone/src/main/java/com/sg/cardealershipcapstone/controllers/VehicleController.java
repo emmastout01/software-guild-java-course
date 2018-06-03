@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author emmastout
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/vehicle")
 public class VehicleController {
@@ -35,8 +37,8 @@ public class VehicleController {
     private VehicleService service;
 
     @GetMapping("/all")
-    public List<Vehicle> getAllVehicles() {
-        return service.getAllVehicles().getPayload();
+    public List<Vehicle> getAllAvailableVehicles(VehicleSearchCriteria criteria) {
+        return service.getAllAvailableVehicles(criteria).getPayload();
     }
 
     @GetMapping("/new")
@@ -45,8 +47,8 @@ public class VehicleController {
     }
 
     @GetMapping("/used")
-    public List<Vehicle> getUsedVehicles() {
-        return service.getUsedVehicles().getPayload();
+    public List<Vehicle> getUsedVehicles(VehicleSearchCriteria criteria) {
+        return service.getUsedVehicles(criteria).getPayload();
     }
 
     @GetMapping("/featured")
@@ -62,7 +64,7 @@ public class VehicleController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle v) {
-        Result<Vehicle> result = service.addVehicle(v);
+        Result<Vehicle> result = service.saveVehicle(v);
         if (result.isSuccess()) {
             return ResponseEntity.ok(v);
         } else {
@@ -77,7 +79,7 @@ public class VehicleController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        Result<Vehicle> result = service.addVehicle(vehicle);
+        Result<Vehicle> result = service.saveVehicle(vehicle);
         if (result.isSuccess()) {
             return ResponseEntity.ok().build();
         } else {

@@ -30,11 +30,11 @@ values
 ('Larry', 'Smith', 'larry@cars.com', 'myPassword2', 'Sales'),
 ('Moe', 'Smith', 'moe@cars.com', 'myPassword3', 'Admin');
 
-insert into Vehicle (VIN, MakeId, ModelId, Color, `Type`, BodyStyle, Transmission, Interior, `Year`, MSRP, SalePrice, Mileage, Description, Photo, Featured)
+insert into Vehicle (VIN, MakeId, ModelId, Color, `Type`, BodyStyle, Transmission, Interior, `Year`, MSRP, SalePrice, Mileage, Description, Photo, Featured, Sold)
 values
-('V39485843e92921', 1, 1, 'Red', 'New', 'Car', 'Automatic', 'Black', 2013, 24558, 21589, 12000, 'Great red car', 'image.jpg', true),
-('V39485843332921', 2, 1, 'Yellow', 'Used', 'Car', 'Automatic', 'Black', 2016, 24557, 14589, 30000, 'Great yellow car', 'image.jpg', true),
-('L39343e84392921', 3, 2, 'Blue', 'Used', 'SUV', 'Manual', 'Beige', 2009, 22555, 20589, 71600, 'Great blue car', 'image.jpg', false);
+('V39485843e92921', 1, 1, 'Red', 'New', 'Car', 'Automatic', 'Black', 2013, 24558, 21589, 12000, 'Great red car', 'image.jpg', true, false),
+('V39485843332921', 2, 1, 'Yellow', 'Used', 'Car', 'Automatic', 'Black', 2016, 24557, 14589, 30000, 'Great yellow car', 'image.jpg', true, false),
+('L39343e84392921', 3, 2, 'Blue', 'Used', 'SUV', 'Manual', 'Beige', 2009, 22555, 20589, 71600, 'Great blue car', 'image.jpg', false, true);
 
 
 insert into Purchase (Name, Phone, Email, Street1, Street2, State, City, ZipCode, PurchaseDate, PurchaseType, UserId, VehicleId, PurchasePrice)
@@ -61,5 +61,8 @@ WHERE
                 AND ("" = "" or `Year` < "")
                 AND ("" = "" or SalePrice > "")
                 AND ("" = "" or SalePrice < "")
-                ORDER BY MSRP DESC LIMIT 2;
+                AND (Sold = "false")
+                ORDER BY MSRP DESC LIMIT 20;
+                
+SELECT * FROM Vehicle WHERE `Type` LIKE "used" OR `Type` Like "new";
                 
