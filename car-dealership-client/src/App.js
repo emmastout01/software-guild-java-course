@@ -52,7 +52,7 @@ class App extends Component {
                   <Link to='/specials'>Specials</Link>
                 </li>
                 <li>
-                  <Link to='/contact'>Contact</Link>
+                  <Link to='/contact/0'>Contact</Link>
                 </li>
               </ul>
             </div>
@@ -64,7 +64,7 @@ class App extends Component {
               <Route path='/inventory/new' component={NewInventory} />
               <Route path='/inventory/used' component={UsedInventory} />
               <Route path='/specials' component={Specials} />
-              <Route path='/contact' component={Contact} />
+              <Route path='/contact/:vin' component={Contact} />
               <Route path='/inventory/details/:vehicleId' 
               component={VehicleDetails} />
               <Route path='/sales/purchase/:vehicleId' component={PurchaseVehicle} />
