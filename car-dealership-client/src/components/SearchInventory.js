@@ -35,7 +35,6 @@ class FeaturedVehicles extends Component {
         const criteria = this.state.searchCriteria;
 
         //Write a POST route for a search criteria that will return a response array of vehicles that match the criteria
-
         axios.post('http://localhost:8080/vehicle/' + this.props.type, criteria
         ).then(response => {
             console.log('Post was successful!', response.data);
@@ -51,10 +50,10 @@ class FeaturedVehicles extends Component {
         this.setState({
             searchCriteria: {
                 makeModelYear: '',
-                minSalePrice: '',
-                maxSalePrice: '',
-                minYear: '',
-                maxYear: ''
+                minSalePrice: 0,
+                maxSalePrice: 0,
+                minYear: 0,
+                maxYear: 0
             }
         })
     }
@@ -75,7 +74,6 @@ class FeaturedVehicles extends Component {
 
     getNewVehicles() {
         console.log("New");
-        //Do the request, reset the vehicleList in state to the data that is returned from the post request
     }
 
     getUsedVehicles() {
@@ -96,7 +94,7 @@ class FeaturedVehicles extends Component {
                     onChange={this.handleChangeFor('makeModelYear')}  />
                     <br />
                     Minimum Price:
-                    <select onChange={this.handleChangeFor('minSalePrice')}>
+                    <select value={criteria.minSalePrice} onChange={this.handleChangeFor('minSalePrice')}>
                         <option value=''>No Minimum</option>
                         <option value='5000'>5,000</option>
                         <option value='6000'>6,000</option>
@@ -113,7 +111,7 @@ class FeaturedVehicles extends Component {
                     </select>
                     <br />
                     Maximum Price:
-                    <select onChange={this.handleChangeFor('maxSalePrice')}>
+                    <select value={criteria.maxSalePrice} onChange={this.handleChangeFor('maxSalePrice')}>
                         <option value=''>No Maximum</option>
                         <option value='8000'>8,000</option>
                         <option value='9000'>9,000</option>
@@ -132,7 +130,7 @@ class FeaturedVehicles extends Component {
                     
                     <br />
                     Minimum Year: 
-                    <select onChange={this.handleChangeFor('minYear')}>
+                    <select value={criteria.minYear} onChange={this.handleChangeFor('minYear')}>
                         <option value=''>No Minimum</option>
                         <option value='2008'>2008</option>
                         <option value='2009'>2009</option>
@@ -149,7 +147,7 @@ class FeaturedVehicles extends Component {
                     </select>
                     <br />
                     Maximum Year: 
-                    <select onChange={this.handleChangeFor('maxYear')}>
+                    <select value={criteria.maxYear} onChange={this.handleChangeFor('maxYear')}>
                         <option value=''>No Maximum</option>
                         <option value='2008'>2008</option>
                         <option value='2009'>2009</option>
