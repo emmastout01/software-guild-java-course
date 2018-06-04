@@ -5,6 +5,7 @@ class Vehicle extends Component {
 
     render() {
         const { vehicle } = this.props;
+        const purchaseLink = "/sales/purchase/" + vehicle.vehicleId;
 
         return (
             <div className="vehicle-search-display">
@@ -18,7 +19,7 @@ class Vehicle extends Component {
                 <p><strong>VIN: </strong>{vehicle.vin}</p> 
                 <p><strong>Sale Price: </strong>{vehicle.salePrice}</p> 
                 <p><strong>MSRP: </strong>{vehicle.msrp}</p>  
-                <button>Purchase</button>
+                <a className="button" href={purchaseLink}><button>Purchase</button></a>
             </div>
         );
     }

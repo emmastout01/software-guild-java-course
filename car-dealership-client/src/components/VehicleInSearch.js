@@ -5,20 +5,9 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 class Vehicle extends Component {
 
-    // getVehicleDetails(vehicleId) {
-    //     //Here, I want to route to a new page, VehicleDetails, that will have access to all details of the vehicle with this id
-    //     window.location = '/i'
-        
-    //     return (
-    //         <li><FeaturedVehicle vehicle={vehicle} /></li>
-    //     )
-    // }
-    // handleSearch: function() {
-    //     window.location = '/search/'+this.state.query+'/some-action';
-    //   }
-
     render() {
         const { vehicle } = this.props;
+        const detailsLink = "/inventory/details/" + vehicle.vehicleId;
 
         return (
   
@@ -33,12 +22,7 @@ class Vehicle extends Component {
                 <p><strong>VIN: </strong>{vehicle.vin}</p> 
                 <p><strong>Sale Price: </strong>{vehicle.salePrice}</p> 
                 <p><strong>MSRP: </strong>{vehicle.msrp}</p>  
-                {/* On the click of this button, I want to pass in the vehicle id and I want to jump to displaying the vehicle details page */}
-                {/* <button onClick={(e) => this.getVehicleDetails(vehicle.vehicleId, e)}>Details</button> */}
-                {/* <button onClick={this.handleSearch()} className="button">
-          Search
-        </button> */}
-                <Link to="/vehicleDetails/:vehicleId" params={{ vehicleId: vehicle.vehicleId}}>Details</Link>    
+                <a className="btn" href={detailsLink}>Details</a>
             </div>
     
         );

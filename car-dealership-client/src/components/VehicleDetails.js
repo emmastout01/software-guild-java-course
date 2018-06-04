@@ -38,6 +38,7 @@ import axios from 'axios';
                     <p>{vehicle.make.make}</p>
                     <p>{vehicle.model.model}</p>
                     <p>{vehicle.color}</p>
+                    {/* Here I want to link to contact info, but also pass in the vehicle as props to the contact component */}
                 </div>
             );
         }

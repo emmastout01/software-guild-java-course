@@ -15,7 +15,7 @@ class Vehicle extends Component {
                     <p>{vehicle.make.make}</p>
                     <p>{vehicle.model.model}</p>
                     <p>{vehicle.color}</p>
-                    <a className="btn" href={detailsLink}><button>Details</button></a>
+                    <a className="button" href={detailsLink}>Details</a>
                 </div>
         );
     }

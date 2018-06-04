@@ -10,6 +10,7 @@ import UsedInventory from './pages/AllUsers/UsedInventory';
 import Specials from './pages/AllUsers/Specials';
 import Contact from './pages/AllUsers/Contact';
 import VehicleDetails from './components/VehicleDetails';
+import PurchaseVehicle from './components/PurchaseVehicle';
 
 class App extends Component {
   constructor(props) {
@@ -64,8 +65,9 @@ class App extends Component {
               <Route path='/inventory/used' component={UsedInventory} />
               <Route path='/specials' component={Specials} />
               <Route path='/contact' component={Contact} />
-              <Route name="vehicleDetails" path='/inventory/:vehicleId' 
+              <Route path='/inventory/details/:vehicleId' 
               component={VehicleDetails} />
+              <Route path='/sales/purchase/:vehicleId' component={PurchaseVehicle} />
             </Switch>
 
           </div>
