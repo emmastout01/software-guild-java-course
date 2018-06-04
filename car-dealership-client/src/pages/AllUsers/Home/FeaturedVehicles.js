@@ -14,7 +14,6 @@ class FeaturedVehicles extends Component {
         this.getFeaturedVehicles();
       }
     
-      //THis is where I want the get request, then pass in the data as props into the vehicle list
       getFeaturedVehicles() {
         axios.get('http://localhost:8080/vehicle/featured')
         .then(response => {
@@ -30,7 +29,7 @@ class FeaturedVehicles extends Component {
     render() {
       return (
           <div>
-              <VehicleList typeOfList="userSearch" vehicles={this.state.featuredVehicles}/>
+              <VehicleList typeOfList="featured" vehicles={this.state.featuredVehicles}/>
           </div>
       );
     }

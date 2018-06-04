@@ -56,7 +56,7 @@ public class VehicleController {
         return service.getFeaturedVehicles().getPayload();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{vehicleId}")
     public Vehicle getVehicleById(@PathVariable int vehicleId) {
         return service.getVehicleById(vehicleId).getPayload();
     }

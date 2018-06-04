@@ -9,6 +9,7 @@ import NewInventory from './pages/AllUsers/NewInventory';
 import UsedInventory from './pages/AllUsers/UsedInventory';
 import Specials from './pages/AllUsers/Specials';
 import Contact from './pages/AllUsers/Contact';
+import VehicleDetails from './components/VehicleDetails';
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +26,6 @@ class App extends Component {
   getSpecials() {
     axios.get('http://localhost:8080/special/all')
     .then(response => {
-      console.log(response);
     }).catch(error => {
       console.log(error);
     })
@@ -64,6 +64,8 @@ class App extends Component {
               <Route path='/inventory/used' component={UsedInventory} />
               <Route path='/specials' component={Specials} />
               <Route path='/contact' component={Contact} />
+              <Route name="vehicleDetails" path='/inventory/:vehicleId' 
+              component={VehicleDetails} />
             </Switch>
 
           </div>
