@@ -10,7 +10,7 @@ class Contact extends Component {
                 name: '',
                 email: '',
                 phone: '',
-                message: props.match.params.vin,
+                message: props.match.params.vin != 0 ? props.match.params.vin : '',
             }
         }
 
@@ -20,6 +20,7 @@ class Contact extends Component {
     //Currying: Returns a function
     handleChangeFor = (propertyName) => {
         return (event) => {
+            console.log(event.target.value);
             this.setState({
                 message: {
                     ...this.state.message,
@@ -49,8 +50,6 @@ class Contact extends Component {
         })
         console.log('form submitted: ', this.state.message);
         this.emptyState();
-
-
     }
 
     emptyState() {
@@ -66,33 +65,21 @@ class Contact extends Component {
 
     render() {
         const { match: { params } } = this.props;
-
-        if (params.vin == 0) {
-            return (
-                <div>
-                    <h2>Contact, no vin</h2>
-                </div>
-
-            )
-        }
-        else {
-            return (
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <h2>Contact with vin</h2>
-                        Name: <input value={this.state.message.name} onChange={this.handleChangeFor('name')} />
-                        <br />
-                        Email: <input value={this.state.message.email} onChange={this.handleChangeFor('email')} />
-                        <br />
-                        Phone: <input value={this.state.message.phone} onChange={this.handleChangeFor('phone')} />
-                        <br />
-                        Message: <textarea value={this.state.message.message} onChange={this.handleChangeFor('message')} default={params.vin} />
-                        <input type='submit' value='Submit' />
-                    </form >
-                </div>
-            )
-        }
-
+        return (
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <h2>Contact with vin</h2>
+                    Name: <input value={this.state.message.name} onChange={this.handleChangeFor('name')} />
+                    <br />
+                    Email: <input value={this.state.message.email} onChange={this.handleChangeFor('email')} />
+                    <br />
+                    Phone: <input value={this.state.message.phone} onChange={this.handleChangeFor('phone')} />
+                    <br />
+                    Message: <textarea value={this.state.message.message} onChange={this.handleChangeFor('message')} />
+                    <input type='submit' value='Submit' />
+                </form >
+            </div>
+        )
     }
 }
 

@@ -20,11 +20,10 @@ import lombok.Data;
 @Data
 public class VehicleSearchCriteria {
 
-    private Make make;
-    private Model model;
-    private int year;
-    private int minYear;
-    private int maxYear;
+    
+    private String makeModelYear;
+    private Integer minYear;
+    private Integer maxYear;
     private BigDecimal minSalePrice;
     private BigDecimal maxSalePrice;
     

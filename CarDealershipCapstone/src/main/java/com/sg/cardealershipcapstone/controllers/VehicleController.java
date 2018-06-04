@@ -36,17 +36,17 @@ public class VehicleController {
     @Autowired
     private VehicleService service;
 
-    @GetMapping("/all")
+    @PostMapping("/all")
     public List<Vehicle> getAllAvailableVehicles(VehicleSearchCriteria criteria) {
         return service.getAllAvailableVehicles(criteria).getPayload();
     }
 
-    @GetMapping("/new")
-    public List<Vehicle> getNewVehicles(VehicleSearchCriteria criteria) {
+    @PostMapping("/new")
+    public List<Vehicle> getNewVehicles(@RequestBody VehicleSearchCriteria criteria) {
         return service.getNewVehicles(criteria).getPayload();
     }
 
-    @GetMapping("/used")
+    @PostMapping("/used")
     public List<Vehicle> getUsedVehicles(VehicleSearchCriteria criteria) {
         return service.getUsedVehicles(criteria).getPayload();
     }
@@ -72,7 +72,7 @@ public class VehicleController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{vehicleId}")
     public ResponseEntity<Void> editVehicle(@PathVariable int vehicleId, @RequestBody Vehicle vehicle) {
 
         if (vehicle.getVehicleId() <= 0 || vehicleId <= 0 || vehicleId != vehicle.getVehicleId()) {

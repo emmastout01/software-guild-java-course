@@ -40,13 +40,25 @@ class VehicleList extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <ul>
-                    {this.props.vehicles.map(this.renderVehicles)}
-                </ul>
-            </div>
-        );
+        if (this.state.typeOfList == "featured") {
+            return (
+                <div>
+                    <ul>
+                        {this.props.vehicles.map(this.renderVehicles)}
+                    </ul>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <h2>Search Results</h2>
+                    <ul>
+                        {this.props.vehicles.map(this.renderVehicles)}
+                    </ul>
+                </div>
+            );
+        }
+
     }
 }
 

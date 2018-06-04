@@ -33,8 +33,7 @@ public class VehicleService {
         Result<List<Vehicle>> result = new Result<>();
         //False corresponds to 'Sold = false' in our SQL query, because we 
         //only want cares that are available for purchase
-        result.setPayload(repo.getAllAvailableVehiclesSearch("False", criteria.getMake().getMake(),
-                criteria.getModel().getModel(), criteria.getYear(), criteria.getMinYear(),
+        result.setPayload(repo.getAllAvailableVehiclesSearch("False", criteria.getMakeModelYear(), criteria.getMinYear(),
                 criteria.getMaxYear(), criteria.getMinSalePrice(),
                 criteria.getMaxSalePrice()));
         return result;
@@ -42,8 +41,7 @@ public class VehicleService {
 
     public Result<List<Vehicle>> getNewVehicles(VehicleSearchCriteria criteria) {
         Result<List<Vehicle>> result = new Result<>();
-        result.setPayload(repo.getNewOrUsedVehicleSearch("New", criteria.getMake().getMake(),
-                criteria.getModel().getModel(), criteria.getYear(), criteria.getMinYear(),
+        result.setPayload(repo.getNewOrUsedVehicleSearch("New", criteria.getMakeModelYear(), criteria.getMinYear(),
                 criteria.getMaxYear(), criteria.getMinSalePrice(),
                 criteria.getMaxSalePrice(), "False"));
         return result;
@@ -51,8 +49,7 @@ public class VehicleService {
 
     public Result<List<Vehicle>> getUsedVehicles(VehicleSearchCriteria criteria) {
         Result<List<Vehicle>> result = new Result<>();
-        result.setPayload(repo.getNewOrUsedVehicleSearch("Used", criteria.getMake().getMake(),
-                criteria.getModel().getModel(), criteria.getYear(), criteria.getMinYear(),
+        result.setPayload(repo.getNewOrUsedVehicleSearch("Used", criteria.getMakeModelYear(), criteria.getMinYear(),
                 criteria.getMaxYear(), criteria.getMinSalePrice(),
                 criteria.getMaxSalePrice(), "False"));
         return result;
