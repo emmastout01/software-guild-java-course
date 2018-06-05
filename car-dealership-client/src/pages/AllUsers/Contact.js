@@ -58,7 +58,7 @@ class Contact extends Component {
                 name: '',
                 email: '',
                 phone: '',
-                message: this.props.match.params.vin
+                message: this.props.match.params.vin != 0 ? this.props.match.params.vin : '',
             }
         })
     }
@@ -68,7 +68,7 @@ class Contact extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Contact with vin</h2>
+                    <h2>Contact Us</h2>
                     Name: <input value={this.state.message.name} onChange={this.handleChangeFor('name')} />
                     <br />
                     Email: <input value={this.state.message.email} onChange={this.handleChangeFor('email')} />

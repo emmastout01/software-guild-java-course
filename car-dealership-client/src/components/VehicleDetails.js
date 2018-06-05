@@ -5,7 +5,8 @@ class Vehicle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            vehicle: null
+            vehicle: null,
+            contactLink: null
         }
     }
 
@@ -16,14 +17,15 @@ class Vehicle extends Component {
         axios.get(`http://localhost:8080/vehicle/${params.vehicleId}`)
             .then(({ data: vehicle }) => {
                 console.log('vehicle', vehicle);
-                this.setState({ vehicle });
+                this.setState({
+                    vehicle: vehicle,
+                    contactLink: "/contact/" + vehicle.vin
+                });
             });
     }
 
     render() {
         const vehicle = this.state.vehicle;
-        //Not a good practice in React--use a ternary operator instead
-        const contactLink = "/contact/" + vehicle.vin;
         return (
             <Fragment>
                 {vehicle ? (
@@ -32,7 +34,7 @@ class Vehicle extends Component {
                         <p>{vehicle.model.model}</p>
                         <p>{vehicle.color}</p>
                          {/* Here I want to link to contact info, but also pass in the vehicle as props to the contact component */}
-                        <a className="btn" href={contactLink}><button>Contact Us</button></a>
+                        <a className="btn" href={this.state.contactLink}><button>Contact Us</button></a>
                     </div>
                 ) : (
                         <div>Error</div>

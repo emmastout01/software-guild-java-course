@@ -18,11 +18,12 @@ class VehicleList extends Component {
 
     render() {
         const vehicles = this.props.vehicleList;
+        const typeOfList = this.props.typeOfList;
         return (
             <div>
                 {vehicles.map((vehicle) => {
                     return (
-                        <Vehicle data={vehicle} />
+                        <Vehicle typeOfList={typeOfList} vehicle={vehicle} />
                     ) 
                 })}
             </div>

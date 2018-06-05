@@ -10,10 +10,8 @@ class NewInventory extends Component {
     }
 
     getVehicles = (criteria) => {
-        console.log('criteria in parent component: ', criteria);
         axios.post('http://localhost:8080/vehicle/new', criteria
         ).then(response => {
-            console.log(response.data);
             this.setState(this.state.vehicleList = response.data);
         }).catch(error => {
             console.log('Error with POST: ', error);
