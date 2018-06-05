@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import VehicleList from '../components/VehicleList';
+import propTypes from 'prop-types';
 
-class FeaturedVehicles extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            vehicleList: [],
+class SearchInventory extends Component {
+    static propTypes = {
+        type: propTypes.string,
+        typeOfList: propTypes.string,
+        onSubmit: propTypes.func
+    }
+
+    state = {
             searchCriteria: {
                 makeModelYear: '',
                 minSalePrice: 0,
@@ -14,9 +17,6 @@ class FeaturedVehicles extends Component {
                 minYear: 0,
                 maxYear: 0
             }
-        }
-
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChangeFor = (propertyName) => {  
@@ -33,16 +33,7 @@ class FeaturedVehicles extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const criteria = this.state.searchCriteria;
-
-        //Write a POST route for a search criteria that will return a response array of vehicles that match the criteria
-        axios.post('http://localhost:8080/vehicle/' + this.props.type, criteria
-        ).then(response => {
-            console.log('Post was successful!', response.data);
-            this.setState(this.state.vehicleList = response.data);
-        }).catch(error => {
-            console.log('Error with POST: ', error);
-        })
-        console.log('form submitted: ', this.state.searchCriteria);
+        this.props.onSubmit(criteria);
         this.emptyState();
     }
 
@@ -56,32 +47,6 @@ class FeaturedVehicles extends Component {
                 maxYear: 0
             }
         })
-    }
-
-    componentDidMount() {
-        switch (this.props.type) {
-            case "new":
-                this.getNewVehicles();
-                break;
-            case "used":
-                this.getUsedVehicles();
-                break;
-            case "all":
-                this.getAllVehicles();
-        }
-
-    }
-
-    getNewVehicles() {
-        console.log("New");
-    }
-
-    getUsedVehicles() {
-        console.log("used");
-    }
-
-    getAllVehicles() {
-        console.log("all");
     }
 
     render() {
@@ -166,11 +131,9 @@ class FeaturedVehicles extends Component {
                     <br />
                     <input type='submit' value='Search' />
                 </form >
-
-                <VehicleList typeOfList={this.props.typeOfList} vehicles={this.state.vehicleList} />
             </div>
         );
     }
 }
 
-export default FeaturedVehicles;
+export default SearchInventory;

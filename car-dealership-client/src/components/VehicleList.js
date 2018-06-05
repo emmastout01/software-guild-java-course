@@ -1,64 +1,32 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types'
 import FeaturedVehicle from './FeaturedVehicle';
 import VehicleInSearch from './VehicleInSearch';
 import AdminVehicleInSearch from './AdminVehicleInSearch';
 import SalesVehicleInSearch from './SalesVehicleInSearch';
+import Vehicle from './Vehicle';
 
 class VehicleList extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            vehicles: props.vehicles,
-            typeOfList: props.typeOfList
-        }
-
-        this.renderVehicles = this.renderVehicles.bind(this);
+    static propTypes = {
+        vehicleList: propTypes.array,
+        typeOfList: propTypes.string
     }
 
-    renderVehicles(vehicle) {
-        switch (this.state.typeOfList) {
-            case "featured":
-                return (
-                    <li><FeaturedVehicle key={vehicle.vehicleId} vehicle={vehicle} /></li>
-                )
-                break;
-            case "userSearch":
-                return (
-                    <li><VehicleInSearch vehicle={vehicle} /></li>
-                )
-                break;
-            case "salesSearch":
-                return (
-                    <li><SalesVehicleInSearch vehicle={vehicle} /></li>
-                )
-                break;
-            case "adminSearch":
-                return (
-                    <li><AdminVehicleInSearch vehicle={vehicle} /></li>
-                )
-        }
+    static defaultProps = {
+        vehicleList: []
     }
 
     render() {
-        if (this.state.typeOfList == "featured") {
-            return (
-                <div>
-                    <ul>
-                        {this.props.vehicles.map(this.renderVehicles)}
-                    </ul>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <h2>Search Results</h2>
-                    <ul>
-                        {this.props.vehicles.map(this.renderVehicles)}
-                    </ul>
-                </div>
-            );
-        }
-
+        const vehicles = this.props.vehicleList;
+        return (
+            <div>
+                {vehicles.map((vehicle) => {
+                    return (
+                        <Vehicle data={vehicle} />
+                    ) 
+                })}
+            </div>
+        )
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
 class Vehicle extends Component {
@@ -22,25 +22,24 @@ class Vehicle extends Component {
 
     render() {
         const vehicle = this.state.vehicle;
-        const contactLink = "/contact";
+        //Not a good practice in React--use a ternary operator instead
+        const contactLink = "/contact/" + vehicle.vin;
+        return (
+            <Fragment>
+                {vehicle ? (
+                    <div>
+                        <p>{vehicle.make.make}</p>
+                        <p>{vehicle.model.model}</p>
+                        <p>{vehicle.color}</p>
+                         {/* Here I want to link to contact info, but also pass in the vehicle as props to the contact component */}
+                        <a className="btn" href={contactLink}><button>Contact Us</button></a>
+                    </div>
+                ) : (
+                        <div>Error</div>
+                    )}
+            </Fragment>
 
-        if (vehicle != null) {
-            const contactLink = "/contact/" + vehicle.vin;
-            return (
-                <div>
-                    <p>{vehicle.make.make}</p>
-                    <p>{vehicle.model.model}</p>
-                    <p>{vehicle.color}</p>
-                    {/* Here I want to link to contact info, but also pass in the vehicle as props to the contact component */}
-                    <a className="btn" href={contactLink}><button>Contact Us</button></a>
-                </div>
-            )
-        }
-        else {
-            return (
-                <div>Could not get vehicle</div>
-            )
-        }
+        )
     }
 }
 

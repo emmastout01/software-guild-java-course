@@ -29,7 +29,7 @@ class FeaturedVehicles extends Component {
     render() {
       return (
           <div>
-              <VehicleList typeOfList="featured" vehicles={this.state.featuredVehicles}/>
+              {/* <VehicleList typeOfList="featured" vehicles={this.state.featuredVehicles}/> */}
           </div>
       );
     }
