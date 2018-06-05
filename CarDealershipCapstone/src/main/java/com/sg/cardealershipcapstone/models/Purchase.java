@@ -7,6 +7,7 @@ package com.sg.cardealershipcapstone.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -64,13 +65,12 @@ public class Purchase {
     
     @ManyToOne
     @JoinColumn(name = "UserId")
-    @NotNull
     private User user;
     
     @OneToOne
     @JoinColumn(name = "VehicleId")
-    @NotNull
     private Vehicle vehicle;
     
     private BigDecimal purchasePrice;
+
 }

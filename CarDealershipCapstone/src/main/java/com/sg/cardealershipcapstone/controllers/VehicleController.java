@@ -37,7 +37,7 @@ public class VehicleController {
     private VehicleService service;
 
     @PostMapping("/all")
-    public List<Vehicle> getAllAvailableVehicles(VehicleSearchCriteria criteria) {
+    public List<Vehicle> getAllAvailableVehicles(@RequestBody VehicleSearchCriteria criteria) {
         return service.getAllAvailableVehicles(criteria).getPayload();
     }
 
@@ -47,7 +47,7 @@ public class VehicleController {
     }
 
     @PostMapping("/used")
-    public List<Vehicle> getUsedVehicles(VehicleSearchCriteria criteria) {
+    public List<Vehicle> getUsedVehicles(@RequestBody VehicleSearchCriteria criteria) {
         return service.getUsedVehicles(criteria).getPayload();
     }
 

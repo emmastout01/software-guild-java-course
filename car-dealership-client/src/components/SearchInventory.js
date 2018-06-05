@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import propTypes from 'prop-types';
 
 class SearchInventory extends Component {
     static propTypes = {
-        type: propTypes.string,
-        typeOfList: propTypes.string,
         onSubmit: propTypes.func
     }
 

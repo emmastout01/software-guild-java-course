@@ -22,7 +22,7 @@ class NewInventory extends Component {
         return (
             <div>
                 <h2>New Inventory</h2>
-                <SearchInventory onSubmit={this.getVehicles} type="new" typeOfSearch="userSearch" />
+                <SearchInventory onSubmit={this.getVehicles} typeOfSearch="userSearch" />
                 <VehicleList vehicleList={this.state.vehicleList} typeOfList="userSearch" />
             </div>
         );

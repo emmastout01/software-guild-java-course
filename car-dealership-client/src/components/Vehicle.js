@@ -10,22 +10,27 @@ class Vehicle extends Component {
 
         const detailsLink = "/inventory/details/" + vehicle.vehicleId;
         const purchaseLink = "/sales/purchase/" + vehicle.vehicleId;
-        const editList = "/admin/editVehicle/" + vehicle.vehicleId;
+        const editLink = "/admin/editVehicle/" + vehicle.vehicleId;
 
-        console.log('vehicle in vehicle: ', vehicle, vehicle.vehicleId.toString());
         return (
             <Fragment>
                 {vehicle ? (
                     <div key={vehicle.vehicleId.toString()}>
-                        <p>{vehicle.make.make}</p>
-                        <p>{vehicle.model.model}</p>
-                        <p>{vehicle.color}</p>
+                            <p><strong>{vehicle.year} {vehicle.make.make} {vehicle.model.model}</strong></p>
+                          <p><strong>Body Style: </strong>{vehicle.bodyStyle}</p>
+                          <p><strong>Trans: </strong>{vehicle.transmission}</p> 
+                          <p><strong>Color: </strong>{vehicle.color}</p> 
+                          <p><strong>Interior: </strong>{vehicle.interior}</p> 
+                          <p><strong>Mileage: </strong>{vehicle.mileage}</p> 
+                          <p><strong>VIN: </strong>{vehicle.vin}</p> 
+                          <p><strong>Sale Price: </strong>{vehicle.salePrice}</p> 
+                          <p><strong>MSRP: </strong>{vehicle.msrp}</p>  
                         { typeOfList == "userSearch" && 
-                        <div><a className="btn" href={detailsLink}><button>Details</button></a></div> }
+                        <div><a className="btn-primary" href={detailsLink}><button>Details</button></a></div> }
                         { typeOfList == "salesSearch" && 
-                        <div>SalesSearch content</div> }
+                        <div><a className="btn-primary" href={purchaseLink}><button>Purchase</button></a></div> }
                         { typeOfList == "adminSearch" && 
-                        <div>AdminSearch content</div> }
+                        <div><a className="btn-primary" href={editLink}><button>Edit</button></a></div> }
                     </div>
                 ) : (
                         <div>Error: Could not get vehicles</div>

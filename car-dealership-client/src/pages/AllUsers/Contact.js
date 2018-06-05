@@ -58,7 +58,7 @@ class Contact extends Component {
                 name: '',
                 email: '',
                 phone: '',
-                message: this.props.match.params.vin != 0 ? this.props.match.params.vin : '',
+                message: '',
             }
         })
     }

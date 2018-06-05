@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import SalesInformation from '../../components/SalesInformation';
 
 class Vehicle extends Component {
     constructor(props) {
@@ -24,20 +25,36 @@ class Vehicle extends Component {
             });
     }
 
+    purchaseVehicle = (purchaseData) => {
+        console.log('Purchase data to post: ', purchaseData);
+        axios.post('http://localhost:8080/purchase', purchaseData
+        ).then(response => {
+            console.log('Post success!', response);
+        }).catch(error => {
+
+            console.log('Error with POST: ', error);
+        })
+    }
+
     render() {
         const vehicle = this.state.vehicle;
+        const errorMessage = this.state.errorMessage;
         return (
             <Fragment>
+                Purchase Vehicle
                 {vehicle ? (
                     <div>
-                        <p>{vehicle.make.make}</p>
-                        <p>{vehicle.model.model}</p>
-                        <p>{vehicle.color}</p>
-                        <a className="btn" href={this.state.contactLink}><button>Contact Us</button></a>
+                        <div>
+                            <p>{vehicle.make.make}</p>
+                            <p>{vehicle.model.model}</p>
+                            <p>{vehicle.color}</p>
+                        </div>
+                        <SalesInformation vehicle={vehicle} onSubmit={this.purchaseVehicle} />
                     </div>
                 ) : (
-                        <div>Error</div>
+                        <div>Error: {errorMessage}</div>
                     )}
+
             </Fragment>
 
         )

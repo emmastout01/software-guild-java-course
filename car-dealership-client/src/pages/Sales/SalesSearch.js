@@ -4,13 +4,13 @@ import axios from 'axios';
 import VehicleList from '../../components/VehicleList';
 
 
-class UsedInventory extends Component {
+class SalesSearch extends Component {
     state = {
         vehicleList: [],
     }
 
     getVehicles = (criteria) => {
-        axios.post('http://localhost:8080/vehicle/used', criteria
+        axios.post('http://localhost:8080/vehicle/all', criteria
         ).then(response => {
             this.setState(this.state.vehicleList = response.data);
         }).catch(error => {
@@ -21,12 +21,12 @@ class UsedInventory extends Component {
     render() {
         return (
             <div>
-                <h2>Used Inventory</h2>
-                <SearchInventory onSubmit={this.getVehicles} typeOfSearch="userSearch" />
-                <VehicleList vehicleList={this.state.vehicleList} typeOfList="userSearch" />
+                <h2>Sales</h2>
+                <SearchInventory onSubmit={this.getVehicles} />
+                <VehicleList vehicleList={this.state.vehicleList} typeOfList="salesSearch" />
             </div>
         );
     }
 }
 
-export default UsedInventory;
+export default SalesSearch;
