@@ -7,7 +7,9 @@ class Vehicle extends Component {
         super(props);
         this.state = {
             vehicle: null,
-            contactLink: null
+            contactLink: null,
+            errorMessage: []
+
         }
     }
 
@@ -31,8 +33,8 @@ class Vehicle extends Component {
         ).then(response => {
             console.log('Post success!', response);
         }).catch(error => {
-
             console.log('Error with POST: ', error);
+            this.setState({ errorMessage: error.response.data })
         })
     }
 
@@ -50,6 +52,14 @@ class Vehicle extends Component {
                             <p>{vehicle.color}</p>
                         </div>
                         <SalesInformation vehicle={vehicle} onSubmit={this.purchaseVehicle} />
+                        {errorMessage.length > 0 &&
+                            <div>
+                                {errorMessage.map((error) => {
+                                    return (
+                                        <h4>{error}</h4>
+                                    )
+                                })}
+                            </div>}
                     </div>
                 ) : (
                         <div>Error: {errorMessage}</div>

@@ -5,7 +5,7 @@ import AddVehicleInfo from '../../components/AddVehicleInfo';
 class EditVehicle extends Component {
     state = {
         vehicle: null,
-        errorMessage: null
+        errorMessage: []
     }
 
     componentDidMount() {
@@ -24,11 +24,14 @@ class EditVehicle extends Component {
     editVehicle = (vehicleData) => {
         const { match: { params } } = this.props;
         console.log('vehicle to send: ', vehicleData);
+        console.log('route params: ', params.vehicleId);
         axios.put(`http://localhost:8080/vehicle/${params.vehicleId}`, vehicleData
         ).then(response => {
             console.log('Post success!', response);
+            window.location.href = '/';
         }).catch(error => {
             console.log('Error with POST: ', error);
+            this.setState({errorMessage: error.response.data})
         })
     }
 
@@ -45,7 +48,14 @@ class EditVehicle extends Component {
                 ) : (
                         <div>Error: {errorMessage}</div>
                     )}
-
+                {errorMessage.length > 0 && 
+                   <div>
+                   {errorMessage.map((error) => {
+                       return (
+                           <h4>{error}</h4>
+                       ) 
+                   })}
+               </div>}
             </Fragment>
 
         )

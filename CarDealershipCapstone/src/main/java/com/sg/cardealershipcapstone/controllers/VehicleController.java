@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -62,13 +61,13 @@ public class VehicleController {
     }
     
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle v) {
+    public ResponseEntity<?> addVehicle(@RequestBody Vehicle v) {
         Result<Vehicle> result = service.saveVehicle(v);
         if (result.isSuccess()) {
             return ResponseEntity.ok(v);
         } else {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(result.getMessages());
         }
     }
 

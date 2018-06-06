@@ -11,6 +11,7 @@ class AddVehicleInfo extends Component {
 
     state = {
         vehicleData: {
+            vehicleId: this.props.vehicle ? this.props.vehicle.vehicleId : '',
             make: {
                 makeId: this.props.vehicle ? this.props.vehicle.make.makeId : '' 
             },
@@ -28,7 +29,7 @@ class AddVehicleInfo extends Component {
             msrp: this.props.vehicle ? this.props.vehicle.msrp : 0,
             salePrice: this.props.vehicle ? this.props.vehicle.salePrice : 0,
             description: this.props.vehicle ? this.props.vehicle.description : '',
-            photo: this.props.vehicle ? this.props.vehicle.photo : '',
+            photo: this.props.vehicle ? this.props.vehicle.photo : 'photo',
             featured: this.props.vehicle ? this.props.vehicle.featured : '',
         },
         makes: [],
@@ -97,11 +98,14 @@ class AddVehicleInfo extends Component {
         event.preventDefault();
         const vehicleData = this.state.vehicleData;
         this.props.onSubmit(vehicleData);
-        this.emptyState();
+        // if(this.props.errorMessage.length == 0) {
+        //     this.emptyState();
+        // }
     }
 
     emptyState() {
         this.setState({
+            vehicleId: this.props.vehicle ? this.props.vehicle.vehicleId : '',
             vehicleData: {
                 make: {
                     makeId: this.props.vehicle ? this.props.vehicle.make.makeId : '' 
@@ -120,8 +124,8 @@ class AddVehicleInfo extends Component {
                 msrp: this.props.vehicle ? this.props.vehicle.msrp : 0,
                 salePrice: this.props.vehicle ? this.props.vehicle.salePrice : 0,
                 description: this.props.vehicle ? this.props.vehicle.description : '',
-                photo: this.props.vehicle ? this.props.vehicle.photo : '',
-                featured: this.props.vehicle ? this.props.vehicle.featured : '',
+                photo: 'photo',
+                featured: this.props.vehicle ? this.props.vehicle.featured : false,
             },
         })
     }
@@ -157,6 +161,7 @@ class AddVehicleInfo extends Component {
 
                     Model: <select value={vehicleData.model.modelId}
                         onChange={this.handleNestedChangeFor('model', 'modelId')}>
+                        <option>Select Model</option>
                         {models.filter((model) => {
                             return (model.make.makeId == this.state.vehicleData.make.makeId);
                         }).map((model) => {
@@ -169,6 +174,7 @@ class AddVehicleInfo extends Component {
 
                     Type: <select value={vehicleData.type}
                         onChange={this.handleChangeFor('type')}>
+                        <option>Select Type</option>
                         <option value="New">New</option>
                         <option value="Used">Used</option>
                     </select>
@@ -176,6 +182,7 @@ class AddVehicleInfo extends Component {
 
                     Body Style: <select value={vehicleData.bodyStyle}
                         onChange={this.handleChangeFor('bodyStyle')}>
+                        <option>Select Body Style</option>
                         <option value="Car">Car</option>
                         <option value="SUV">SUV</option>
                         <option value="Truck">Truck</option>
@@ -190,6 +197,7 @@ class AddVehicleInfo extends Component {
 
                     Transmission: <select value={vehicleData.transmission}
                         onChange={this.handleChangeFor('transmission')}>
+                        <option>Select Transmission</option>
                         <option value="Manual">Manual</option>
                         <option value="Automatic">Automatic</option>
                     </select>
@@ -197,6 +205,7 @@ class AddVehicleInfo extends Component {
 
                     Color: <select value={vehicleData.color}
                         onChange={this.handleChangeFor('color')}>
+                        <option>Select Color</option>
                         <option value="Red">Red</option>
                         <option value="Yellow">Yellow</option>
                         <option value="Blue">Blue</option>
@@ -208,6 +217,7 @@ class AddVehicleInfo extends Component {
 
                     Interior: <select value={vehicleData.interior}
                         onChange={this.handleChangeFor('interior')}>
+                        <option>Select Interior</option>
                         <option value="Black">Black</option>
                         <option value="Silver">Beige</option>
                         <option value="White">Burgundy</option>
