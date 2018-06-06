@@ -3,14 +3,6 @@ import axios from 'axios';
 import AddVehicleInfo from '../../components/AddVehicleInfo';
 
 class AddVehicle extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            vehicle: null,
-            contactLink: null
-        }
-    }
-
     AddVehicle = (vehicleData) => {
         axios.post('http://localhost:8080/vehicle', vehicleData
         ).then(response => {
@@ -21,11 +13,10 @@ class AddVehicle extends Component {
     }
 
     render() {
-        const vehicle = this.state.vehicle;
-        const errorMessage = this.state.errorMessage;
         return (
             <Fragment>
                 <div>
+                    <h2>Add Vehicle</h2>
                     <AddVehicleInfo onSubmit={this.addVehicle} />
                 </div>
             </Fragment>

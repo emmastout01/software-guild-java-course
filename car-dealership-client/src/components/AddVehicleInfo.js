@@ -3,29 +3,30 @@ import propTypes from 'prop-types';
 import axios from 'axios';
 
 class AddVehicleInfo extends Component {
+    static propTypes = {
+        onSubmit: propTypes.func,
+        vehicle: propTypes.object
+    }
+
     state = {
         vehicleData: {
-            make: '',
-            model: '',
-            type: '',
-            bodyStyle: '',
-            year: '',
-            transmission: '',
-            color: '',
-            interior: '',
-            mileage: 0,
-            vin: '',
-            msrp: 0,
-            salePrice: 0,
-            description: '',
-            photo: ''
+            make: this.props.vehicle ? this.props.vehicle.make.make : '',
+            model: this.props.vehicle ? this.props.vehicle.model.model : '',
+            type: this.props.vehicle ? this.props.vehicle.type : '',
+            bodyStyle: this.props.vehicle ? this.props.vehicle.bodyStyle : '',
+            year: this.props.vehicle ? this.props.vehicle.year : '',
+            transmission: this.props.vehicle ? this.props.vehicle.transmission : '',
+            color: this.props.vehicle ? this.props.vehicle.color : '',
+            interior: this.props.vehicle ? this.props.vehicle.interior : '',
+            mileage: this.props.vehicle ? this.props.vehicle.mileage : 0,
+            vin: this.props.vehicle ? this.props.vehicle.vin : '',
+            msrp: this.props.vehicle ? this.props.vehicle.msrp : 0,
+            salePrice: this.props.vehicle ? this.props.vehicle.salePrice : 0,
+            description: this.props.vehicle ? this.props.vehicle.description : '',
+            photo: this.props.vehicle ? this.props.vehicle.photo : ''
         },
         makes: [],
         models: []
-    }
-
-    static propTypes = {
-        onSubmit: propTypes.func,
     }
 
     componentDidMount() {
@@ -36,7 +37,6 @@ class AddVehicleInfo extends Component {
     getMakes() {
         axios.get('http://localhost:8080/make/all')
             .then(response => {
-                console.log('make response: ', response);
                 this.setState({ 
                     makes: response.data
                 })
@@ -48,7 +48,6 @@ class AddVehicleInfo extends Component {
     getModels() {
         axios.get('http://localhost:8080/model/all')
             .then(response => {
-                console.log('model response: ', response);
                 this.setState({ 
                     models: response.data
                 })
@@ -104,8 +103,6 @@ class AddVehicleInfo extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Add Vehicle</h2>
-
                     Make: <select value={vehicleData.make}
                         onChange={this.handleChangeFor('make')}>
                         <option>Select Make</option>
@@ -120,8 +117,6 @@ class AddVehicleInfo extends Component {
                     Model: <select value={vehicleData.model}
                         onChange={this.handleChangeFor('model')}>
                         {models.filter((model) => {
-                            console.log('model make: ', model.make.make);
-                            console.log('make : ', this.state.vehicleData.make);
                             return (model.make.make == this.state.vehicleData.make);
                         }).map((model) => {
                             return (
@@ -193,6 +188,8 @@ class AddVehicleInfo extends Component {
                     Description: <textarea value={vehicleData.description}
                         onChange={this.handleChangeFor('description')} />
                     <br />
+
+                    {this.props.vehicle && <div>EDIT MODE</div>}
                     <input type='submit' value='Save' />
                 </form >
             </div>

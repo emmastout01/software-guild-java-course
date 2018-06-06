@@ -56,7 +56,7 @@ class App extends Component {
               <Route path='/sales/index' component={SalesSearch} />
               <Route path='/sales/purchase/:vehicleId' component={PurchaseVehicle} />
               <Route path='/admin/index' component={AdminSearch} />
-              {/* <Route path='/admin/editVehicle/:vehicleId' component={EditVehicle} /> */}
+              {<Route path='/admin/editVehicle/:vehicleId' component={EditVehicle} />}
               <Route path='/admin/addVehicle' component={AddVehicle} />
             </Switch>
 
