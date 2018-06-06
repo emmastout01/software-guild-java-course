@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import SpecialList from '../../components/SpecialList';
 
+class Specials extends Component {
+    state = {
+        specials: [],
+    }
 
+    componentDidMount() {
+        this.getSpecials();
 
-const Specials = ({ match }) => (
-    <div>
-        <h2>Specials</h2>
-    </div>
-);
+    }
+
+    getSpecials() {
+        axios.get('http://localhost:8080/special/all')
+            .then(response => {
+                this.setState({
+                    specials: response.data
+                })
+            }).catch(error => {
+                console.log(error);
+            })
+    }
+
+    render() {
+        const specials = this.state.specials;
+
+        return (
+            <div>
+                <SpecialList specials={specials} />
+            </div>
+        );
+    }
+}
+
 
 export default Specials;

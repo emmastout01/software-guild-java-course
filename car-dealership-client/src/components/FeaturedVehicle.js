@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect } from 'react-router-dom';
-
-
 
 class Vehicle extends Component {
 
     render() {
-        const { vehicle } = this.props;
-        const detailsLink = "/inventory/details/" + vehicle.vehicleId;
+        const vehicle = this.props.vehicle;
 
         return (
                 <div className="featured-vehicle-display">
-
                     <p>{vehicle.make.make}</p>
                     <p>{vehicle.model.model}</p>
                     <p>{vehicle.color}</p>
-                    <a className="btn" href={detailsLink}><button>Details</button></a>
+                    <hr />
                 </div>
         );
     }

@@ -1,0 +1,26 @@
+import React, { Component, Fragment } from 'react';
+
+
+
+class Special extends Component {
+
+    render() {
+        const special = this.props.special;
+
+        return (
+            <Fragment>
+                {special ? (
+                    <div>
+                         <h2>{special.title}</h2>
+                         <h5>{special.description}</h5>   
+                    </div>
+                ) : (
+                        <div>Error: Could not get specials</div>
+                    )}
+            </Fragment>
+
+        )
+    }
+}
+
+export default Special;

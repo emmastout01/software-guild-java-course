@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types'
 import FeaturedVehicle from './FeaturedVehicle';
-import VehicleInSearch from './VehicleInSearch';
-import AdminVehicleInSearch from './AdminVehicleInSearch';
-import SalesVehicleInSearch from './SalesVehicleInSearch';
 import Vehicle from './Vehicle';
 
 class VehicleList extends Component {
