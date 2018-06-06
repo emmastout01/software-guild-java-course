@@ -3,7 +3,7 @@ import axios from 'axios';
 import AddVehicleInfo from '../../components/AddVehicleInfo';
 
 class AddVehicle extends Component {
-    AddVehicle = (vehicleData) => {
+    addVehicle = (vehicleData) => {
         axios.post('http://localhost:8080/vehicle', vehicleData
         ).then(response => {
             console.log('Post success!', response);

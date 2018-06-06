@@ -21,8 +21,9 @@ class EditVehicle extends Component {
             });
     }
 
-    EditVehicle = (vehicleData) => {
+    editVehicle = (vehicleData) => {
         const { match: { params } } = this.props;
+        console.log('vehicle to send: ', vehicleData);
         axios.put(`http://localhost:8080/vehicle/${params.vehicleId}`, vehicleData
         ).then(response => {
             console.log('Post success!', response);

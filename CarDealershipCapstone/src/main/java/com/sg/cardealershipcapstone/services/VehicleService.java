@@ -5,7 +5,11 @@
  */
 package com.sg.cardealershipcapstone.services;
 
+import com.sg.cardealershipcapstone.data.MakeRepository;
+import com.sg.cardealershipcapstone.data.ModelRepository;
 import com.sg.cardealershipcapstone.data.VehicleRepository;
+import com.sg.cardealershipcapstone.models.Make;
+import com.sg.cardealershipcapstone.models.Model;
 import com.sg.cardealershipcapstone.models.Vehicle;
 import com.sg.cardealershipcapstone.models.VehicleSearchCriteria;
 import java.math.BigDecimal;
@@ -28,6 +32,12 @@ public class VehicleService {
 
     @Autowired
     VehicleRepository repo;
+    
+    @Autowired
+    MakeRepository makeRepo;
+    
+     @Autowired
+    ModelRepository modelRepo;
 
     public Result<List<Vehicle>> getAllAvailableVehicles(VehicleSearchCriteria criteria) {
         Result<List<Vehicle>> result = new Result<>();
@@ -62,6 +72,7 @@ public class VehicleService {
     }
 
     public Result<Vehicle> saveVehicle(Vehicle v) {
+        v = grabMakeAndModel(v);
         Result<Vehicle> result = validate(v);
         if (result.isSuccess()) {
             v = repo.save(v);
@@ -70,6 +81,22 @@ public class VehicleService {
         return result;
     }
 
+    private Vehicle grabMakeAndModel(Vehicle v) {
+        Optional<Make> ma = makeRepo.findById(v.getMake().getMakeId());
+        if (ma.isPresent()) {
+            Make make = ma.get();
+            v.setMake(make);
+        }
+        
+        Optional<Model> mo = modelRepo.findById(v.getModel().getModelId());
+        if (mo.isPresent()) {
+            Model model = mo.get();
+            v.setModel(model);
+        }
+        
+        return v;   
+    }
+    
     public Result deleteById(int vehicleId) {
         repo.deleteById(vehicleId);
         return new Result<>();

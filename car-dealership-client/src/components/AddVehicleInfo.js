@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import axios from 'axios';
+import Checkbox from './Checkbox';
 
 class AddVehicleInfo extends Component {
     static propTypes = {
@@ -10,8 +11,12 @@ class AddVehicleInfo extends Component {
 
     state = {
         vehicleData: {
-            make: this.props.vehicle ? this.props.vehicle.make.make : '',
-            model: this.props.vehicle ? this.props.vehicle.model.model : '',
+            make: {
+                makeId: this.props.vehicle ? this.props.vehicle.make.makeId : '' 
+            },
+            model: {
+                modelId: this.props.vehicle ? this.props.vehicle.model.modelId : ''
+            },
             type: this.props.vehicle ? this.props.vehicle.type : '',
             bodyStyle: this.props.vehicle ? this.props.vehicle.bodyStyle : '',
             year: this.props.vehicle ? this.props.vehicle.year : '',
@@ -23,11 +28,16 @@ class AddVehicleInfo extends Component {
             msrp: this.props.vehicle ? this.props.vehicle.msrp : 0,
             salePrice: this.props.vehicle ? this.props.vehicle.salePrice : 0,
             description: this.props.vehicle ? this.props.vehicle.description : '',
-            photo: this.props.vehicle ? this.props.vehicle.photo : ''
+            photo: this.props.vehicle ? this.props.vehicle.photo : '',
+            featured: this.props.vehicle ? this.props.vehicle.featured : '',
         },
         makes: [],
         models: []
     }
+
+    componentWillMount = () => {
+        this.selectedCheckboxes = new Set();
+      }
 
     componentDidMount() {
         this.getMakes();
@@ -37,7 +47,7 @@ class AddVehicleInfo extends Component {
     getMakes() {
         axios.get('http://localhost:8080/make/all')
             .then(response => {
-                this.setState({ 
+                this.setState({
                     makes: response.data
                 })
             }).catch(error => {
@@ -48,7 +58,7 @@ class AddVehicleInfo extends Component {
     getModels() {
         axios.get('http://localhost:8080/model/all')
             .then(response => {
-                this.setState({ 
+                this.setState({
                     models: response.data
                 })
             }).catch(error => {
@@ -68,6 +78,21 @@ class AddVehicleInfo extends Component {
         }
     }
 
+    handleNestedChangeFor = (property1, property2) => {
+        
+                return (event) => {
+                    this.setState({
+                        vehicleData: {
+                            ...this.state.vehicleData,
+                            [property1]: { ...this.state.property1, 
+                                [property2]: event.target.value
+                            }
+                        }
+                    })
+                }
+            }
+        
+
     handleSubmit = (event) => {
         event.preventDefault();
         const vehicleData = this.state.vehicleData;
@@ -78,49 +103,65 @@ class AddVehicleInfo extends Component {
     emptyState() {
         this.setState({
             vehicleData: {
-                make: '',
-                model: '',
-                type: '',
-                bodyStyle: '',
-                year: '',
-                transmission: '',
-                color: '',
-                interior: '',
-                mileage: 0,
-                vin: '',
-                msrp: 0,
-                salePrice: 0,
-                description: '',
-                photo: ''
-            }
+                make: {
+                    makeId: this.props.vehicle ? this.props.vehicle.make.makeId : '' 
+                },
+                model: {
+                    modelId: this.props.vehicle ? this.props.vehicle.model.modelId : ''
+                },
+                type: this.props.vehicle ? this.props.vehicle.type : '',
+                bodyStyle: this.props.vehicle ? this.props.vehicle.bodyStyle : '',
+                year: this.props.vehicle ? this.props.vehicle.year : '',
+                transmission: this.props.vehicle ? this.props.vehicle.transmission : '',
+                color: this.props.vehicle ? this.props.vehicle.color : '',
+                interior: this.props.vehicle ? this.props.vehicle.interior : '',
+                mileage: this.props.vehicle ? this.props.vehicle.mileage : 0,
+                vin: this.props.vehicle ? this.props.vehicle.vin : '',
+                msrp: this.props.vehicle ? this.props.vehicle.msrp : 0,
+                salePrice: this.props.vehicle ? this.props.vehicle.salePrice : 0,
+                description: this.props.vehicle ? this.props.vehicle.description : '',
+                photo: this.props.vehicle ? this.props.vehicle.photo : '',
+                featured: this.props.vehicle ? this.props.vehicle.featured : '',
+            },
         })
     }
+
+    toggleCheckbox = label => {
+        if (this.selectedCheckboxes.has(label)) {
+          this.selectedCheckboxes.delete(label);
+        } else {
+          this.selectedCheckboxes.add(label);
+        }
+      }      
 
     render() {
         const vehicleData = this.state.vehicleData;
         const makes = this.state.makes;
         const models = this.state.models;
+        if (this.props.vehicle) {
+            console.log('vehicle featured: ', this.props.vehicle.featured);
+        }
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    Make: <select value={vehicleData.make}
-                        onChange={this.handleChangeFor('make')}>
+                    Make: <select value={vehicleData.make.makeId}
+                        onChange={this.handleNestedChangeFor('make', 'makeId')}>
                         <option>Select Make</option>
                         {makes.map((make) => {
                             return (
-                                <option value={make.make}>{make.make}</option>
+                                <option value={make.makeId}>{make.make}</option>
                             )
                         })}
                     </select>
                     <br />
 
-                    Model: <select value={vehicleData.model}
-                        onChange={this.handleChangeFor('model')}>
+                    Model: <select value={vehicleData.model.modelId}
+                        onChange={this.handleNestedChangeFor('model', 'modelId')}>
                         {models.filter((model) => {
-                            return (model.make.make == this.state.vehicleData.make);
+                            return (model.make.makeId == this.state.vehicleData.make.makeId);
                         }).map((model) => {
                             return (
-                                <option value={model.model}>{model.model}</option>
+                                <option value={model.modelId}>{model.model}</option>
                             )
                         })}
                     </select>
@@ -189,7 +230,15 @@ class AddVehicleInfo extends Component {
                         onChange={this.handleChangeFor('description')} />
                     <br />
 
-                    {this.props.vehicle && <div>EDIT MODE</div>}
+                    {this.props.vehicle &&
+                        <div>
+                            <Checkbox
+                                value={vehicleData.featured}
+                                label="Feature this Vehicle"
+                                handleCheckboxChange={this.toggleCheckbox}
+                                key='featured'
+                            />
+                            <br /></div>}
                     <input type='submit' value='Save' />
                 </form >
             </div>
