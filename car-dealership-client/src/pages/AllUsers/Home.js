@@ -13,6 +13,7 @@ class Home extends Component {
         this.getSpecials();
         this.getFeaturedVehicles();
       }
+
     
       getSpecials() {
         axios.get('http://localhost:8080/special/all')

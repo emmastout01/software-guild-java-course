@@ -12,6 +12,9 @@ import Contact from './pages/AllUsers/Contact';
 import VehicleDetails from './pages/AllUsers/VehicleDetails';
 import PurchaseVehicle from './pages/Sales/PurchaseVehicle';
 import SalesSearch from './pages/Sales/SalesSearch';
+import AdminSearch from './pages/Admin/AdminVehicleSearch';
+import EditVehicle from './pages/Admin/EditVehicle';
+import AddVehicle from './pages/Admin/AddVehicle';
 
 class App extends Component {
 
@@ -52,6 +55,9 @@ class App extends Component {
               component={VehicleDetails} />
               <Route path='/sales/index' component={SalesSearch} />
               <Route path='/sales/purchase/:vehicleId' component={PurchaseVehicle} />
+              <Route path='/admin/index' component={AdminSearch} />
+              {/* <Route path='/admin/editVehicle/:vehicleId' component={EditVehicle} /> */}
+              <Route path='/admin/addVehicle' component={AddVehicle} />
             </Switch>
 
           </div>

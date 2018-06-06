@@ -9,7 +9,6 @@ class Specials extends Component {
 
     componentDidMount() {
         this.getSpecials();
-
     }
 
     getSpecials() {
