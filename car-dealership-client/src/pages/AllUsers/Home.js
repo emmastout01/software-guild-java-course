@@ -12,41 +12,45 @@ class Home extends Component {
     componentDidMount() {
         this.getSpecials();
         this.getFeaturedVehicles();
-      }
+    }
 
-    
-      getSpecials() {
+
+    getSpecials() {
         axios.get('http://localhost:8080/special/all')
-        .then(response => {
-            this.setState({
-                specials: response.data
+            .then(response => {
+                this.setState({
+                    specials: response.data
+                })
+            }).catch(error => {
+                console.log(error);
             })
-        }).catch(error => {
-          console.log(error);
-        })
-      }
+    }
 
-      getFeaturedVehicles() {
+    getFeaturedVehicles() {
         axios.get('http://localhost:8080/vehicle/featured')
-        .then(response => {
-            this.setState({vehicles: response.data});
-        }).catch(error => {
-          console.log(error);
-        })
-      }
+            .then(response => {
+                this.setState({ vehicles: response.data });
+            }).catch(error => {
+                console.log(error);
+            })
+    }
 
     render() {
         const specials = this.state.specials;
         const vehicles = this.state.vehicles;
 
         return (
-            <div>
-        <h2>Home</h2>
-        <SpecialList specials={specials} />
-        <Featured vehicles={vehicles}/>
-    </div>
+            <div className="container">
+                <div className="jumbotron">
+                    <SpecialList specials={specials} />
+                </div>
+
+                
+                <Featured vehicles={vehicles} />
+            </div>
+
         );
-      }
+    }
 }
 
 export default Home;

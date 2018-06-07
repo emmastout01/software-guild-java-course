@@ -28,7 +28,7 @@ class EditVehicle extends Component {
         axios.put(`http://localhost:8080/vehicle/${params.vehicleId}`, vehicleData
         ).then(response => {
             console.log('Post success!', response);
-            window.location.href = '/';
+            window.location.href = '/editSuccess';
         }).catch(error => {
             console.log('Error with POST: ', error);
             this.setState({errorMessage: error.response.data})

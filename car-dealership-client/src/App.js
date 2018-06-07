@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import axios from 'axios';
+// import { Navbar, Button, Nav, NavItem, Input } from 'react-bootstrap';
 
 
 // Page components
@@ -15,6 +16,9 @@ import SalesSearch from './pages/Sales/SalesSearch';
 import AdminSearch from './pages/Admin/AdminVehicleSearch';
 import EditVehicle from './pages/Admin/EditVehicle';
 import AddVehicle from './pages/Admin/AddVehicle';
+import EditSuccess from './pages/Admin/EditSuccess';
+import AddSuccess from './pages/Admin/AddSuccess';
+
 
 class App extends Component {
 
@@ -22,45 +26,67 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="container">
-            <div className="menu-bar">
-              <ul>
-                <li>
-                  <Link to='/'>Home</Link>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a className="navbar-brand" href="/">
+            <img src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.freestockphotos.biz%2Fpictures%2F15%2F15685%2FIllustration%2Bof%2Ba%2Bred%2Bcartoon%2Bcar.png&f=1" width="50" height="50" class="d-inline-block align-center" alt="" />   Emma's Cars</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link" to='/'>Home <span className="sr-only">(current)</span></Link>
                 </li>
-                <li>
-                  <Link to='/inventory/new'>New Inventory</Link>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Browse Vehicles</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <Link to='/inventory/new' className="dropdown-item">New Vehicles</Link>
+                    <Link to='/inventory/used' className="dropdown-item">Used Vehicles</Link>
+                  </div>
                 </li>
-                <li>
-                  <Link to='/inventory/used'>Used Inventory</Link>
+                <li className="nav-item">
+                  <Link to='/specials' className="nav-link">Specials</Link>
                 </li>
-                <li>
-                  <Link to='/specials'>Specials</Link>
+                <li className="nav-item">
+                  <Link to='/contact/0' className="nav-link">Contact</Link>
                 </li>
-                <li>
-                  <Link to='/contact/0'>Contact</Link>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sales Team</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <Link to='/sales/index' className="dropdown-item">Search Available Vehicles</Link>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <Link to='/admin/index' className="dropdown-item">Search Available Vehicles</Link>
+                    <Link to='/admin/addVehicle' className="dropdown-item">Add Vehicle</Link>
+                  </div>
                 </li>
               </ul>
             </div>
+          </nav>
 
-            <hr />
-
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/inventory/new' component={NewInventory} />
-              <Route path='/inventory/used' component={UsedInventory} />
-              <Route path='/specials' component={Specials} />
-              <Route path='/contact/:vin' component={Contact} />
-              <Route path='/inventory/details/:vehicleId' 
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/inventory/new' component={NewInventory} />
+            <Route path='/inventory/used' component={UsedInventory} />
+            <Route path='/specials' component={Specials} />
+            <Route path='/contact/:vin' component={Contact} />
+            <Route path='/inventory/details/:vehicleId'
               component={VehicleDetails} />
-              <Route path='/sales/index' component={SalesSearch} />
-              <Route path='/sales/purchase/:vehicleId' component={PurchaseVehicle} />
-              <Route path='/admin/index' component={AdminSearch} />
-              {<Route path='/admin/editVehicle/:vehicleId' component={EditVehicle} />}
-              <Route path='/admin/addVehicle' component={AddVehicle} />
-            </Switch>
+            <Route path='/sales/index' component={SalesSearch} />
+            <Route path='/sales/purchase/:vehicleId' component={PurchaseVehicle} />
+            <Route path='/admin/index' component={AdminSearch} />
+            {<Route path='/admin/editVehicle/:vehicleId' component={EditVehicle} />}
+            <Route path='/admin/addVehicle' component={AddVehicle} />
+            <Route path='/editSuccess' component={EditSuccess} />
+            <Route path='/addSuccess' component={AddSuccess} />
+          </Switch>
 
-          </div>
         </div>
       </Router>
     );

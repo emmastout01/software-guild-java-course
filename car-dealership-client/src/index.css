@@ -1,5 +1,13 @@
-body {
+body, html {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  background-image: url("background-img.jpeg");
+  background-attachment: fixed;
+  background-position: right-top;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.jumbotron {
+  margin-top: 15px;
 }

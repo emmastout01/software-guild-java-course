@@ -11,6 +11,7 @@ class AddVehicle extends Component {
         axios.post('http://localhost:8080/vehicle', vehicleData
         ).then(response => {
             console.log('Post success!', response);
+            window.location.href = '/addSuccess';
         }).catch(error => {
             console.log('Error with POST: ', error.response.data);
             this.setState({errorMessage: error.response.data})

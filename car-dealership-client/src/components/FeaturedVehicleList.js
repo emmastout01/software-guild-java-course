@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import FeaturedVehicle from './FeaturedVehicle';
 
+
 class FeaturedVehicleList extends Component {
 
   render() {
