@@ -15,9 +15,10 @@ body, html {
 
 .jumbotron {
   margin-top: 15px;
-  background-color: rgb(243, 167, 167);
-  border: 3px solid rgb(204, 39, 39);
+  background-color: rgb(173, 243, 167);
+  border: 3px solid rgb(23, 153, 19);
   height: 250px;
+  border-radius: 10px;
 }
 
 .carousel-item {
@@ -61,7 +62,7 @@ body, html {
 
 
 
-.search-vehicle {
+.search-vehicle, .vehicle-details {
   margin: 10px;
   padding: 10px;
   border: 2px solid black;

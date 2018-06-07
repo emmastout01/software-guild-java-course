@@ -39,10 +39,10 @@ class EditVehicle extends Component {
         const vehicle = this.state.vehicle;
         const errorMessage = this.state.errorMessage;
         return (
-            <Fragment className="container">
-                <h2>Edit Vehicle</h2>
+            <Fragment>
                 {vehicle ? (
-                    <div >
+                    <div className="container" >
+                        <h2>Edit Vehicle</h2>
                         <AddVehicleInfo vehicle={vehicle} onSubmit={this.editVehicle} />
                     </div>
                 ) : (
