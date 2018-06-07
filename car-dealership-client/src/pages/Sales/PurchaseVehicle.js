@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import SalesInformation from '../../components/SalesInformation';
+import Vehicle from '../../components/Vehicle';
 
-class Vehicle extends Component {
+class PurchaseVehicle extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,14 +44,10 @@ class Vehicle extends Component {
         const errorMessage = this.state.errorMessage;
         return (
             <Fragment>
-                Purchase Vehicle
                 {vehicle ? (
-                    <div>
-                        <div>
-                            <p>{vehicle.make.make}</p>
-                            <p>{vehicle.model.model}</p>
-                            <p>{vehicle.color}</p>
-                        </div>
+                    <div className="container">
+                        <h2>Purchase Vehicle</h2>
+                        <Vehicle vehicle={vehicle} typeOfList="null" />
                         <SalesInformation vehicle={vehicle} onSubmit={this.purchaseVehicle} />
                         {errorMessage.length > 0 &&
                             <div>
@@ -62,7 +59,9 @@ class Vehicle extends Component {
                             </div>}
                     </div>
                 ) : (
-                        <div>Error: {errorMessage}</div>
+                        <div className="container">
+                            Error: {errorMessage}
+                        </div>
                     )}
 
             </Fragment>
@@ -71,4 +70,4 @@ class Vehicle extends Component {
     }
 }
 
-export default Vehicle;
+export default PurchaseVehicle;

@@ -20,7 +20,7 @@ class NewInventory extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h2>New Inventory</h2>
                 <SearchInventory onSubmit={this.getVehicles} typeOfSearch="userSearch" />
                 <VehicleList vehicleList={this.state.vehicleList} typeOfList="userSearch" />

@@ -31,7 +31,7 @@ class EditVehicle extends Component {
             window.location.href = '/editSuccess';
         }).catch(error => {
             console.log('Error with POST: ', error);
-            this.setState({errorMessage: error.response.data})
+            this.setState({ errorMessage: error.response.data })
         })
     }
 
@@ -39,23 +39,25 @@ class EditVehicle extends Component {
         const vehicle = this.state.vehicle;
         const errorMessage = this.state.errorMessage;
         return (
-            <Fragment>
+            <Fragment className="container">
                 <h2>Edit Vehicle</h2>
                 {vehicle ? (
-                    <div>
+                    <div >
                         <AddVehicleInfo vehicle={vehicle} onSubmit={this.editVehicle} />
                     </div>
                 ) : (
-                        <div>Error: {errorMessage}</div>
+                        <div>
+                            Error: {errorMessage}
+                        </div>
                     )}
-                {errorMessage.length > 0 && 
-                   <div>
-                   {errorMessage.map((error) => {
-                       return (
-                           <h4>{error}</h4>
-                       ) 
-                   })}
-               </div>}
+                {errorMessage.length > 0 &&
+                    <div>
+                        {errorMessage.map((error) => {
+                            return (
+                                <h4>{error}</h4>
+                            )
+                        })}
+                    </div>}
             </Fragment>
 
         )

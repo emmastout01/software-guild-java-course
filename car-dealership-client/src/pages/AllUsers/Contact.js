@@ -66,18 +66,38 @@ class Contact extends Component {
     render() {
         const { match: { params } } = this.props;
         return (
-            <div>
+            <div className="container">
+                <h2>Contact Us</h2>
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Contact Us</h2>
-                    Name: <input value={this.state.message.name} onChange={this.handleChangeFor('name')} />
-                    <br />
-                    Email: <input value={this.state.message.email} onChange={this.handleChangeFor('email')} />
-                    <br />
-                    Phone: <input value={this.state.message.phone} onChange={this.handleChangeFor('phone')} />
-                    <br />
-                    Message: <textarea value={this.state.message.message} onChange={this.handleChangeFor('message')} />
-                    <input type='submit' value='Submit' />
-                </form >
+                    <div className="form-group">
+                        <label for="contact-name">Full Name</label>
+                        <input type="text" value={this.state.message.name} 
+                        onChange={this.handleChangeFor('name')} 
+                        className="form-control" id="contact-name" 
+                        placeholder="Enter name" />
+                    </div>
+                    <div className="form-group">
+                        <label for="contact-email">Email address</label>
+                        <input type="email" value={this.state.message.email} 
+                        onChange={this.handleChangeFor('email')} 
+                        className="form-control" id="contact-email" 
+                        placeholder="name@example.com" />
+                    </div>
+                    <div className="form-group">
+                        <label for="contact-phone">Phone</label>
+                        <input type="text" value={this.state.message.phone} 
+                        onChange={this.handleChangeFor('phone')} 
+                        className="form-control" id="contact-phone" 
+                        placeholder="Enter phone number" />
+                    </div>
+                    <div className="form-group">
+                        <label for="contact-message">Message</label>
+                        <textarea value={this.state.message.message} 
+                        onChange={this.handleChangeFor('message')} id="contact-message" 
+                        className="form-control"  placeholder="Enter message" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         )
     }

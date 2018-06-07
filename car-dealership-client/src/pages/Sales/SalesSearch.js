@@ -20,11 +20,11 @@ class SalesSearch extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h2>Sales</h2>
                 <SearchInventory onSubmit={this.getVehicles} />
                 <VehicleList vehicleList={this.state.vehicleList} typeOfList="salesSearch" />
-            </div>
+            </div >
         );
     }
 }

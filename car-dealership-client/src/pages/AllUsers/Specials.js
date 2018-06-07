@@ -26,7 +26,7 @@ class Specials extends Component {
         const specials = this.state.specials;
 
         return (
-            <div>
+            <div className="container" >
                 <SpecialList specials={specials} />
             </div>
         );

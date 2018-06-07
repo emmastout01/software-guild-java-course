@@ -23,7 +23,7 @@ class AddVehicle extends Component {
         console.log('error message: ', errorMessage);
         return (
             <Fragment>
-                <div>
+                <div className="container">
                     <h2>Add Vehicle</h2>
                     <AddVehicleInfo onSubmit={this.addVehicle} errorMessage={this.state.errorMessage}/>
                     {errorMessage.length > 0 && 

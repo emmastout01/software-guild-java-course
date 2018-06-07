@@ -3,7 +3,8 @@ import { Button } from 'react-bootstrap';
 
 const AddSuccess = () => {
     return (
-        <div>Your vehicle was successfully added!
+        <div className="container">
+            Your vehicle was successfully added!
         </div>
     )
 }

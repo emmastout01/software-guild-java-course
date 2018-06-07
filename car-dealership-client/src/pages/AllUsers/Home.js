@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Featured from '../../components/FeaturedVehicleList';
-import SpecialList from '../../components/SpecialList';
+import SpecialList from '../../components/SpecialListHome';
 import axios from 'axios';
 
 class Home extends Component {
@@ -44,8 +44,7 @@ class Home extends Component {
                 <div className="jumbotron">
                     <SpecialList specials={specials} />
                 </div>
-
-                
+                <hr />
                 <Featured vehicles={vehicles} />
             </div>
 

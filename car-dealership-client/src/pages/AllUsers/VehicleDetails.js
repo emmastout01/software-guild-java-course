@@ -29,14 +29,14 @@ class Vehicle extends Component {
         return (
             <Fragment>
                 {vehicle ? (
-                    <div>
+                    <div className="container">
                         <p>{vehicle.make.make}</p>
                         <p>{vehicle.model.model}</p>
                         <p>{vehicle.color}</p>
                         <a className="btn" href={this.state.contactLink}><button>Contact Us</button></a>
                     </div>
                 ) : (
-                        <div>Error</div>
+                        <div className="container">Error</div>
                     )}
             </Fragment>
 

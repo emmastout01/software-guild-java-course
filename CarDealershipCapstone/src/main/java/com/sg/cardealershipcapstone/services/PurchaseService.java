@@ -71,7 +71,7 @@ public class PurchaseService {
         Result<Purchase> result = new Result<>();
         BigDecimal NinetyFivePercent = new BigDecimal(.95);
         BigDecimal NinetyFivePercentOfSalePrice = p.getVehicle().getSalePrice()
-                .divide(NinetyFivePercent, 2, RoundingMode.CEILING);
+                .multiply(NinetyFivePercent);
         Optional<User> u = userRepo.findById(p.getUser().getUserId());
 
         //Add other validation logic here

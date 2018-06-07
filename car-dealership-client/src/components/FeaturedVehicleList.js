@@ -10,11 +10,13 @@ class FeaturedVehicleList extends Component {
     return (
       <div>
         <h2> Featured Vehicles </h2>
+        <div className="row">
         {vehicles.map((vehicle) => {
-          return (
+          return ( 
             <FeaturedVehicle vehicle={vehicle} />
           )
         })}
+        </div>
       </div>
     );
   }

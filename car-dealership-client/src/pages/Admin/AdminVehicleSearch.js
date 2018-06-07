@@ -21,7 +21,7 @@ class AdminSearch extends Component {
     render() {
         const addLink = "/admin/addVehicle";
         return (
-            <div>
+            <div className="container">
                 <h2>Admin Search</h2>
                 <a className="btn-primary" href={addLink}><button>Add a New Vehicle</button></a>
                 <SearchInventory onSubmit={this.getVehicles} />

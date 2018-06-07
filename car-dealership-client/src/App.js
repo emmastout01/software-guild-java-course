@@ -28,7 +28,7 @@ class App extends Component {
         <div className="App">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="/">
-            <img src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.freestockphotos.biz%2Fpictures%2F15%2F15685%2FIllustration%2Bof%2Ba%2Bred%2Bcartoon%2Bcar.png&f=1" width="50" height="50" class="d-inline-block align-center" alt="" />   Emma's Cars</a>
+            <img src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.freestockphotos.biz%2Fpictures%2F15%2F15685%2FIllustration%2Bof%2Ba%2Bred%2Bcartoon%2Bcar.png&f=1" width="50" height="50" className="d-inline-block align-center" alt="" />   Emma's Cars</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
