@@ -67,3 +67,17 @@ body, html {
   padding: 10px;
   border: 2px solid black;
 }
+
+.checkmark {
+  background-color: rgb(173, 246, 183);
+  width: 200px;
+  border-radius: 100%;
+}
+
+.success-message {
+  text-align: center;
+}
+
+.error {
+  color: rgb(187, 17, 17);
+}

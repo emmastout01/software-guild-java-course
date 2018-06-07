@@ -22,7 +22,7 @@
 	`Description` varchar(300) NOT NULL,
 	`Photo` varchar(100) NOT NULL,
 	`Featured` BOOLEAN NOT NULL,
-    `Sold` BOOLEAN NOT NULL,
+    `Sold` BOOLEAN NOT NULL DEFAULT false,
 	PRIMARY KEY (`VehicleId`)
 );
 
@@ -98,3 +98,18 @@ ALTER TABLE `Model` ADD FOREIGN KEY fk_Model_Make(MakeId) REFERENCES Make(MakeId
 ALTER TABLE `Purchase` ADD FOREIGN KEY  fk_Purchase_User(UserId) REFERENCES User(UserId);
 
 ALTER TABLE `Purchase` ADD FOREIGN KEY fk_Purchase_Vehicle(VehicleId) REFERENCES Vehicle(VehicleId);
+
+-- 
+-- SELECT * FROM Vehicle v
+-- Inner join Model mo on v.ModelId = mo.ModelId
+-- Inner join Make ma on v.MakeId = ma.MakeId
+-- WHERE
+--                 ("" = "" or ma.Make LIKE "Honda" or mo.Model LIKE "Honda" or `Year` LIKE "Honda")
+--                 AND ("" = 0 or `Year` > 0)
+--                 AND ("" = 0 or `Year` < 0)
+--                 AND ("" = 0 or SalePrice > 0)
+--                 AND ("" = 0 or SalePrice < 0)
+--                 AND (Sold = "false")
+--                 ORDER BY MSRP DESC LIMIT 20;
+--                 
+-- SELECT * FROM Vehicle WHERE `Type` LIKE "used" OR `Type` Like "new";

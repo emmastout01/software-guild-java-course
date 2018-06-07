@@ -205,6 +205,8 @@ class SalesInformation extends Component {
                         </div>
                     </div>
                     <button type="submit" class="btn">Save Purchase</button>
+                    <br />
+                    <br />
                 </form>
             </div>
         );

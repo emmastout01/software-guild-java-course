@@ -10,7 +10,7 @@ class Special extends Component {
         return (
             <Fragment>
                 {special ? (
-                    <div>
+                    <div className="special">
                          <h2>{special.title}</h2>
                          <h5>{special.description}</h5>   
                     </div>

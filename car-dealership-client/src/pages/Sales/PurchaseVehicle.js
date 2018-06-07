@@ -53,7 +53,7 @@ class PurchaseVehicle extends Component {
                             <div>
                                 {errorMessage.map((error) => {
                                     return (
-                                        <h4>{error}</h4>
+                                        <h4 className="error">{error}</h4>
                                     )
                                 })}
                             </div>}
