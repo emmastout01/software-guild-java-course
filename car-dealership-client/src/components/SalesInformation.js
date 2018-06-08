@@ -79,7 +79,7 @@ class SalesInformation extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="purchase-name">Full Name</label>
+                            <label for="purchase-name">Full Name*</label>
                             <input type="text" value={purchaseData.name}
                                 onChange={this.handleChangeFor('name')} class="form-control"
                                 id="purchase-name" placeholder="Name" />
@@ -96,9 +96,10 @@ class SalesInformation extends Component {
                         <input type="text" value={purchaseData.email}
                             onChange={this.handleChangeFor('email')} class="form-control"
                             id="purchase-email" placeholder="name@example.com" />
+                            <small id="emailHelp" class="form-text">Either phone number or email is required.</small>
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">Address</label>
+                        <label for="inputAddress">Address*</label>
                         <input type="text" value={purchaseData.street1}
                             onChange={this.handleChangeFor('street1')} class="form-control"
                             id="inputAddress" placeholder="1234 Main St" />
@@ -111,13 +112,13 @@ class SalesInformation extends Component {
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
+                            <label for="inputCity">City*</label>
                             <input type="text" value={purchaseData.city}
                                 onChange={this.handleChangeFor('city')} class="form-control"
                                 id="inputCity" placeholder="City" />
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
+                            <label for="inputState">State*</label>
                             <select value={purchaseData.state} onChange={this.handleChangeFor('state')}
                                 id="inputState" className="form-control">
                                 <option value="">Choose...</option>
@@ -175,7 +176,7 @@ class SalesInformation extends Component {
                             </select>
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
+                            <label for="inputZip">Zip Code*</label>
                             <input type="text" value={purchaseData.zipCode}
                                 onChange={this.handleChangeFor('zipCode')}
                                 class="form-control" id="inputZip" />
@@ -185,14 +186,16 @@ class SalesInformation extends Component {
                     <div class="form-group">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="purchase-price">Purchase Price</label>
+                                <label for="purchase-price">Purchase Price*</label>
                                 <input type="text" value={purchaseData.purchasePrice}
                                     onChange={this.handleChangeFor('purchasePrice')}
                                     class="form-control" id="purchase-price"
                                     placeholder="Purchase Price" />
+                                    <small class="form-text">Purchase price must be at least 95% of sale price. 
+                                        <br />Purchase price cannot exceed MSRP.</small>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="purchase-type">Purchase Type</label>
+                                <label for="purchase-type">Purchase Type*</label>
                                 <select class="form-control" id="purchase-type"
                                     placeholder="Select Purchase Type" value={purchaseData.purchaseType}
                                     onChange={this.handleChangeFor('purchaseType')}>

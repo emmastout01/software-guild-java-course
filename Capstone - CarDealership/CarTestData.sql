@@ -56,8 +56,6 @@ SELECT * from ContactMessage;
 
 SELECT * from Vehicle;
 
-SELECT * FROM Make WHERE Make = 'Ford';
-
 SELECT * from Purchase;
 
 --                 
